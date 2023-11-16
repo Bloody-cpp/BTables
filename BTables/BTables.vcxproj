@@ -184,10 +184,12 @@
     <None Include="BTables.qtvscr" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\DataBase.cpp" />
     <ClCompile Include="src\mainWindow.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="include\DataBase.h" />
     <ClInclude Include="include\defaultInclude.h" />
     <QtMoc Include="include\mainWindow.h" />
   </ItemGroup>

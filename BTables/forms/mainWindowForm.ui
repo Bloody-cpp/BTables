@@ -100,4 +100,5 @@ border: 1px solid rgb(31, 31, 31)</string>
  <resources>
   <include location="../resources/resource.qrc"/>
  </resources>
+ <connections/>
 </ui>

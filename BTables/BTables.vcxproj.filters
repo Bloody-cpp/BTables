@@ -30,6 +30,9 @@
     <ClCompile Include="src\mainWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\DataBase.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\defaultInclude.h">
@@ -38,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="include\mainWindow.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\DataBase.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>
