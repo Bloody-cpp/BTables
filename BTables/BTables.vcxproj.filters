@@ -24,26 +24,32 @@
     <None Include="BTables.qtvscr" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\mainWindow.cpp">
+    <ClCompile Include="src\MainWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\DataBase.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\AppLogicCore.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\defaultInclude.h">
+    <ClInclude Include="include\DefaultInclude.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="include\mainWindow.h">
+    <QtMoc Include="include\MainWindow.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="include\DataBase.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\AppLogicCore.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>

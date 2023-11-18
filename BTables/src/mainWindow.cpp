@@ -1,6 +1,6 @@
-#include "mainWindow.h"
+#include "MainWindow.h"
 
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
+BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 {
 	this->setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
 	this->setObjectName("MainWindow");
@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	m_mainForm.availableTables->addItem("Hello world!");
 }
 
-void MainWindow::mousePressEvent(QMouseEvent* event)
+void BTables::MainWindow::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton &&
 		event->modifiers() == Qt::NoModifier)
@@ -22,7 +22,7 @@ void MainWindow::mousePressEvent(QMouseEvent* event)
 	QWidget::mousePressEvent(event);
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent* event)
+void BTables::MainWindow::mouseMoveEvent(QMouseEvent* event)
 {
 	if (m_dragPosition == kInvalidPoint)
 		return QWidget::mouseMoveEvent(event);
@@ -32,14 +32,14 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event)
 	m_dragPosition = event->globalPos();
 }
 
-void MainWindow::mouseReleaseEvent(QMouseEvent* event)
+void BTables::MainWindow::mouseReleaseEvent(QMouseEvent* event)
 {
 	m_dragPosition = kInvalidPoint;
 	setCursor(Qt::OpenHandCursor);
 	QWidget::mouseReleaseEvent(event);
 }
 
-void MainWindow::on_closeButton_clicked()
+void BTables::MainWindow::on_closeButton_clicked()
 {
 	QCoreApplication::quit();
 }

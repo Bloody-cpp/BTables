@@ -1,5 +1,5 @@
-#include <defaultInclude.h>
-#include <mainWindow.h>
+#include <DefaultInclude.h>
+#include <MainWindow.h>
 
 using namespace Qt;
 
