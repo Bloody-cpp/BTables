@@ -36,6 +36,9 @@
     <ClCompile Include="src\AppLogicCore.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\DebugWindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DefaultInclude.h">
@@ -52,9 +55,13 @@
     <QtMoc Include="include\AppLogicCore.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
+    <QtMoc Include="include\DebugWindow.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="forms\mainWindowForm.ui" />
+    <QtUic Include="forms\debugWindow.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc" />

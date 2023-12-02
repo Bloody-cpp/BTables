@@ -184,6 +184,7 @@
     <None Include="BTables.qtvscr" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\DebugWindow.cpp" />
     <ClCompile Include="src\AppLogicCore.cpp" />
     <ClCompile Include="src\DataBase.cpp" />
     <ClCompile Include="src\MainWindow.cpp" />
@@ -192,10 +193,12 @@
   <ItemGroup>
     <QtMoc Include="include\DataBase.h" />
     <QtMoc Include="include\AppLogicCore.h" />
+    <QtMoc Include="include\DebugWindow.h" />
     <ClInclude Include="include\DefaultInclude.h" />
     <QtMoc Include="include\MainWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="forms\debugWindow.ui" />
     <QtUic Include="forms\mainWindowForm.ui" />
   </ItemGroup>
   <ItemGroup>

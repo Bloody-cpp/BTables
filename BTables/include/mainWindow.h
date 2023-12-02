@@ -9,10 +9,10 @@ namespace BTables
 	class MainWindow : public QMainWindow
 	{
 		Q_OBJECT
-
-			Ui::MainWindowForm m_mainForm;
 		QPoint m_dragPosition;
 	public:
+		Ui::MainWindowForm m_mainForm;
+
 		MainWindow(QWidget* parent = nullptr);
 		~MainWindow() {}
 	protected:

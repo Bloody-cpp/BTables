@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/resources">
         <file>files/close.png</file>
+        <file>files/closeHover.png</file>
     </qresource>
 </RCC>
