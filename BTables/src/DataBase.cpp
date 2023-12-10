@@ -19,7 +19,7 @@ void BTables::DataBase::connect()
         m_debug->fatalMessage("Can`t connect to database");
     }
     QSqlQuery* query = new QSqlQuery(m_db);
-    query->prepare("CREATE TABLE IF NOT EXISTS tables(id INTEGER PRIMARY KEY, tableName TEXT UNICAL, data TEXT)");
+    query->prepare("CREATE TABLE IF NOT EXISTS tables(id INTEGER PRIMARY KEY, tableName TEXT UNICAL, data TEXT, columns INT)");
     m_debug->sqlMessage(query, "Create 'tables'");
 }
 QStringList BTables::DataBase::tables()
@@ -44,6 +44,14 @@ QVector<QVector<QString>> BTables::DataBase::getDataOfTable(const QString tableN
     {
         return QVector<QVector<QString>>();
     }
+}
+void BTables::DataBase::createTable(const QString tableName, short numberColumns)
+{
+    QSqlQuery* query = new QSqlQuery(m_db);
+    query->prepare("INSERT INTO tables(tableName, columns) VALUES(:tableName, :columns)");
+    query->bindValue(":tableName", tableName);
+    query->bindValue(":columns", numberColumns);
+    query->exec();
 }
 void BTables::DataBase::renameTable(const QString oldName, const QString newName)
 {
@@ -169,8 +177,20 @@ QVector<QVector<QString>> BTables::DataBase::parseData(const QString dataString)
 bool BTables::DataBase::hasTable(const QString tableName)
 {
     QSqlQuery* query = new QSqlQuery(m_db);
-    query->prepare("SELECT * FROM tables WHERE toTable = :toTable");
-    query->bindValue(":toTable", tableName);
+    query->prepare("SELECT * FROM tables WHERE tableName = :tableName");
+    query->bindValue(":tableName", tableName);
     query->exec();
     return query->next();
+}
+bool BTables::DataBase::correctColumnsNumber(QVector<QString> fieldData, QString tableName)
+{
+    QSqlQuery* query = new QSqlQuery(m_db);
+    query->prepare("SELECT columns FROM tables WHERE tableName = :tableName");
+    query->bindValue(":tableName", tableName);
+    query->exec();
+    if (fieldData.size() == query->value(0).toInt())
+    {
+        return true;
+    }
+    return false;
 }

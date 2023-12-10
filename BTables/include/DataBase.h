@@ -8,6 +8,7 @@ namespace BTables
 	{
 		Q_OBJECT
 
+
 		Debugger m_debug;
 		QSqlDatabase m_db;
 	public:
@@ -15,6 +16,7 @@ namespace BTables
 		void connect();
 		QStringList tables();
 		QVector<QVector<QString>> getDataOfTable(const QString tableName);
+		void createTable(const QString tableName, short numberColumns);
 		void renameTable(const QString oldName, const QString newName);
 		void addNewField(const QString tableName, QVector<QString> fieldData);
 		void updateField(const QString tableName, QVector<QString> fieldData);
@@ -29,5 +31,6 @@ namespace BTables
 		QString serializeData(QVector<QVector<QString>> data);
 		QVector<QVector<QString>> parseData(const QString dataString);
 		bool hasTable(const QString tableName);
+		bool correctColumnsNumber(QVector<QString> fieldData, QString tableName);
 	};
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <DefaultInclude.h>
 #include <ui_mainWindowForm.h>
+#include <CreateTableDialog.h>
 
 namespace BTables
 {
@@ -12,6 +13,7 @@ namespace BTables
 		QPoint m_dragPosition;
 	public:
 		Ui::MainWindowForm m_mainForm;
+		CreateTableDialog m_createTableDialog;
 
 		MainWindow(QWidget* parent = nullptr);
 		~MainWindow() {}
@@ -20,6 +22,6 @@ namespace BTables
 		void mouseMoveEvent(QMouseEvent* event) override;
 		void mouseReleaseEvent(QMouseEvent* event) override;
 	public slots:
-		void on_closeButton_clicked();
+		void on_createTableButton_clicked();
 	};
 }

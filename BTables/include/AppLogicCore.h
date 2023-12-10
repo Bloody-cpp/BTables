@@ -3,9 +3,11 @@
 #include <MainWindow.h>
 #include <DataBase.h>
 #include <DebugWindow.h>
+#include <CreateTableDialog.h>
 
 namespace BTables
 {
+
 	class AppLogicCore : public QObject
 	{
 		Q_OBJECT
@@ -16,9 +18,10 @@ namespace BTables
 	public:
 		explicit AppLogicCore(QObject* parent = nullptr);
 		~AppLogicCore();
-	private:
-		void initializeListTables();
+		void updateTablesList();
 	public slots:
 		void onSelectTable(QListWidgetItem* clickedItem);
+		void onCreateNewTable(const CreateTableDialog::Data data);
+		void onExit();
 	};
 }

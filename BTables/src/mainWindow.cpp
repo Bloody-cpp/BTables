@@ -31,7 +31,8 @@ void BTables::MainWindow::mouseReleaseEvent(QMouseEvent* event)
 	m_dragPosition = kInvalidPoint;
 	QWidget::mouseReleaseEvent(event);
 }
-void BTables::MainWindow::on_closeButton_clicked()
+
+void BTables::MainWindow::on_createTableButton_clicked()
 {
-	QCoreApplication::quit();
+	m_createTableDialog.exec();
 }
