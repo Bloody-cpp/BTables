@@ -8,6 +8,7 @@ namespace BTables
 BTables::DebugWindow::DebugWindow() : QWidget()
 {
 	m_debugWindow.setupUi(this);
+	this->show();
 }
 
 void BTables::DebugWindow::pushMessage(const QString type, const QString message)
