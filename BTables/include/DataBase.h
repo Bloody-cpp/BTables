@@ -1,6 +1,6 @@
 #pragma once
-#include <DefaultInclude.h>
-#include <DebugWindow.h>
+#include <Include.h>
+#include <Debug.h>
 
 namespace BTables
 {
@@ -8,11 +8,9 @@ namespace BTables
 	{
 		Q_OBJECT
 
-
-		Debugger m_debug;
 		QSqlDatabase m_db;
 	public:
-		explicit DataBase(Debugger debug, QObject* parent = nullptr);
+		explicit DataBase(QObject* parent = nullptr);
 		void connect();
 		QStringList tables();
 		QVector<QVector<QString>> getDataOfTable(const QString tableName);

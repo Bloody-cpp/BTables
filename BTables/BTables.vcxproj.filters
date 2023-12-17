@@ -33,9 +33,6 @@
     <ClCompile Include="src\DataBase.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\AppLogicCore.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\DebugWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -47,15 +44,15 @@
     <ClInclude Include="include\DefaultInclude.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Global.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="include\MainWindow.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="include\DataBase.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\AppLogicCore.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="include\DebugWindow.h">

@@ -1,33 +1,33 @@
 #include "DataBase.h"
 
-BTables::DataBase::DataBase(Debugger debug, QObject* parent) : QObject(parent), m_debug(debug) {}
+BTables::DataBase::DataBase(QObject* parent) : QObject(parent) {}
 void BTables::DataBase::connect()
 {
     if (m_db.isOpen())
     {
-        m_debug->warnMessage("Double call db.connect");
+        warnMessage("Double call db.connect");
         return;
     }
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName("tables.db");
     if (m_db.open())
     {
-        m_debug->infoMessage("Succesful connected to database");
+        infoMessage("Succesful connected to database");
     }
     else
     {
-        m_debug->fatalMessage("Can`t connect to database");
+        fatalMessage("Can`t connect to database");
     }
     QSqlQuery* query = new QSqlQuery(m_db);
     query->prepare("CREATE TABLE IF NOT EXISTS tables(id INTEGER PRIMARY KEY, tableName TEXT UNICAL, data TEXT, columns INT)");
-    m_debug->sqlMessage(query, "Create 'tables'");
+    sqlMessage(query, "Create 'tables'");
 }
 QStringList BTables::DataBase::tables()
 {
     QStringList list;
     QSqlQuery* query = new QSqlQuery(m_db);
     query->prepare("SELECT * FROM tables");
-    m_debug->sqlMessage(query, "Call db.tables");
+    sqlMessage(query, "Call db.tables");
     while (query->next())
     {
         list.push_back(query->value("tableName").toString());
@@ -61,7 +61,7 @@ void BTables::DataBase::renameTable(const QString oldName, const QString newName
         query->prepare("UPDATE tables SET tableName = :newTableName WHERE tableName = :oldTableName");
         query->bindValue(":newTableName", newName);
         query->bindValue(":oldTableName", oldName);
-        m_debug->sqlMessage(query, "Call db.renameTable");
+        sqlMessage(query, "Call db.renameTable");
     }
 }
 void BTables::DataBase::addNewField(const QString tableName, QVector<QString> fieldData)
@@ -86,7 +86,7 @@ void BTables::DataBase::updateField(const QString tableName, QVector<QString> fi
             }
         }
         QString serializedResult = serializeData(decode);
-        m_debug->infoMessage("db.updateField.serialized: " + serializedResult);
+        infoMessage("db.updateField.serialized: " + serializedResult);
         updateDataOfTable(tableName, serializedResult);
     }
 }
@@ -97,7 +97,7 @@ void BTables::DataBase::removeField(const QString tableName, QVector<QString> fi
         QVector<QVector<QString>> decode = parseData(getDataFromTable(tableName));
         decode.erase(decode.begin() + searchIndexOfRow(decode, fieldData));
         QString serializedResult = serializeData(decode);
-        m_debug->infoMessage("db.removeField.serialized: " + serializedResult);
+        infoMessage("db.removeField.serialized: " + serializedResult);
         updateDataOfTable(tableName, serializedResult);
     }
 }
@@ -108,7 +108,7 @@ void BTables::DataBase::removeTable(const QString tableName)
         QSqlQuery* query = new QSqlQuery(m_db);
         query->prepare("DELETE FROM tables WHERE tableName = :tableName");
         query->bindValue(":tableName", tableName);
-        m_debug->sqlMessage(query, "db.removeTable");
+        sqlMessage(query, "db.removeTable");
     }
 }
 BTables::DataBase::~DataBase()
@@ -120,7 +120,7 @@ QString BTables::DataBase::getDataFromTable(const QString tableName)
     QSqlQuery* query = new QSqlQuery(m_db);
     query->prepare("SELECT data FROM tables WHERE tableName = :tableName");
     query->bindValue(":tableName", tableName);
-    m_debug->sqlMessage(query, "Call db.getDataFromTable");
+    sqlMessage(query, "Call db.getDataFromTable");
     return query->value(0).toString();
 }
 void BTables::DataBase::updateDataOfTable(const QString tableName, const QString newData)
@@ -129,7 +129,7 @@ void BTables::DataBase::updateDataOfTable(const QString tableName, const QString
     query->prepare("UPDATE tables SET data = :newData WHERE tableName = :tableName");
     query->bindValue(":newData", newData);
     query->bindValue(":tableName", tableName);
-    m_debug->sqlMessage(query, "Call db.updateDataOfTable");
+    sqlMessage(query, "Call db.updateDataOfTable");
 }
 size_t BTables::DataBase::searchIndexOfRow(QVector<QVector<QString>> decode, QVector<QString> row)
 {

@@ -1,12 +1,12 @@
-#include <DefaultInclude.h>
-#include <AppLogicCore.h>
+#include <MainWindow.h>
 
 using namespace Qt;
+using namespace BTables;
 
 int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
-	BTables::AppLogicCore logicCore;
-
+	MainWindow window;
+	window.show();
 	return app.exec();
 }

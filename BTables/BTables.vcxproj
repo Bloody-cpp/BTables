@@ -185,18 +185,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CreateTableDialog.cpp" />
-    <ClCompile Include="src\DebugWindow.cpp" />
-    <ClCompile Include="src\AppLogicCore.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\DataBase.cpp" />
     <ClCompile Include="src\MainWindow.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="include\DataBase.h" />
-    <QtMoc Include="include\AppLogicCore.h" />
-    <QtMoc Include="include\DebugWindow.h" />
+    <QtMoc Include="include\Debug.h" />
     <QtMoc Include="include\CreateTableDialog.h" />
-    <ClInclude Include="include\DefaultInclude.h" />
+    <ClInclude Include="include\Include.h" />
     <QtMoc Include="include\MainWindow.h" />
   </ItemGroup>
   <ItemGroup>

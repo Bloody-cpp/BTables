@@ -5,13 +5,27 @@ BTables::CreateTableDialog::CreateTableDialog(QWidget* parent) : QDialog(parent)
 	m_dialog.setupUi(this);
 }
 
-void BTables::CreateTableDialog::on_confirmButton_clicked()
+QString BTables::CreateTableDialog::getTableName()
 {
-	if (m_dialog.tableName->text().isEmpty())
+	return m_dialog.tableName->text();
+}
+
+qint16 BTables::CreateTableDialog::getNumberColumns()
+{
+	return m_dialog.numberOfColumns->value();
+}
+
+Ui::CreateTableDialogForm* BTables::CreateTableDialog::getUI()
+{
+	return &m_dialog;
+}
+
+bool BTables::CreateTableDialog::checkEmpty()
+{
+	if (getTableName().isEmpty())
 	{
 		m_dialog.tableNameLabel->setText("Fill this");
-		return;
+		return false;
 	}
-	this->done(0);
-	emit newTable({ m_dialog.tableName->text(), (short)m_dialog.numberOfColumns->value() });
+	return true;
 }

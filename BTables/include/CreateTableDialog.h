@@ -1,5 +1,5 @@
 #pragma once
-#include <DefaultInclude.h>
+#include <DataBase.h>
 #include <ui_createTableButtonDialog.h>
 
 namespace BTables
@@ -8,20 +8,13 @@ namespace BTables
 	{
 		Q_OBJECT
 
-	public:
-		struct Data
-		{
-			QString m_tableName;
-			short m_numberColumns = 0;
-		};
-
 		Ui::CreateTableDialogForm m_dialog;
-		Data m_data;
+	public:
 		explicit CreateTableDialog(QWidget* parent = nullptr);
+		QString getTableName();
+		qint16 getNumberColumns();
+		Ui::CreateTableDialogForm* getUI();
+		bool checkEmpty();
 		~CreateTableDialog() {};
-	signals:
-		void newTable(const Data data);
-	public slots:
-		void on_confirmButton_clicked();
 	};
 }
