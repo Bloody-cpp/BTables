@@ -14,6 +14,7 @@ namespace BTables
 		void connect();
 		QStringList tables();
 		QVector<QVector<QString>> getDataOfTable(const QString tableName);
+		short getColumns(const QString tableName);
 		void createTable(const QString tableName, short numberColumns);
 		void renameTable(const QString oldName, const QString newName);
 		void addNewField(const QString tableName, QVector<QString> fieldData);

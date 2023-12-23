@@ -45,6 +45,17 @@ QVector<QVector<QString>> BTables::DataBase::getDataOfTable(const QString tableN
         return QVector<QVector<QString>>();
     }
 }
+short BTables::DataBase::getColumns(const QString tableName)
+{
+    if (hasTable(tableName))
+    {
+        QSqlQuery* query = new QSqlQuery(m_db);
+        query->prepare("SELECT columns FROM tables WHERE tableName = :tableName");
+        query->bindValue(":tableName", tableName);
+        query->exec();
+        return query->value(0).toInt();
+    }
+}
 void BTables::DataBase::createTable(const QString tableName, short numberColumns)
 {
     QSqlQuery* query = new QSqlQuery(m_db);
@@ -66,7 +77,7 @@ void BTables::DataBase::renameTable(const QString oldName, const QString newName
 }
 void BTables::DataBase::addNewField(const QString tableName, QVector<QString> fieldData)
 {
-    if (hasTable(tableName))
+    if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
     {
         QString newData = getDataFromTable(tableName) + serializeRow(fieldData);
         updateDataOfTable(newData, newData);
@@ -74,7 +85,7 @@ void BTables::DataBase::addNewField(const QString tableName, QVector<QString> fi
 }
 void BTables::DataBase::updateField(const QString tableName, QVector<QString> fieldData)
 {
-    if (hasTable(tableName))
+    if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
     {
         QVector<QVector<QString>> decode = parseData(getDataFromTable(tableName));
         QVector<QString>& needRow = decode[searchIndexOfRow(decode, fieldData)];
@@ -92,7 +103,7 @@ void BTables::DataBase::updateField(const QString tableName, QVector<QString> fi
 }
 void BTables::DataBase::removeField(const QString tableName, QVector<QString> fieldData)
 {
-    if (hasTable(tableName))
+    if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
     {
         QVector<QVector<QString>> decode = parseData(getDataFromTable(tableName));
         decode.erase(decode.begin() + searchIndexOfRow(decode, fieldData));

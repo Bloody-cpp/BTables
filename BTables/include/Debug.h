@@ -17,6 +17,7 @@ namespace BTables
 
 	extern DebugWindow* debugWindow;
 	
+	void setupDebugWindow(DebugWindow* ptrWindow);
 	void sqlMessage(QSqlQuery* query, const QString message);
 	void warnMessage(const QString message);
 	void fatalMessage(const QString message);

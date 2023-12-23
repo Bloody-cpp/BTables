@@ -16,6 +16,7 @@ namespace BTables
 
 		Ui::MainWindowForm m_mainForm;
 		CreateTableDialog m_createTableDialog;
+		DebugWindow* m_debugWindow;
 
 		DataBase* m_db;
 	public:
@@ -32,5 +33,6 @@ namespace BTables
 		void on_closeButton_clicked();
 		void on_availableTables_itemClicked(QListWidgetItem* item);
 		void on_createTableButton_clicked();
+		void on_addFieldButton_clicked();
 	};
 }

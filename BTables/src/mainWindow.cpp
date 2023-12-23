@@ -3,10 +3,20 @@
 BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 {
 	this->setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
-	m_db = new DataBase(this);
-	m_mainForm.setupUi(this);
 
+	//Initialize
+	m_debugWindow = new DebugWindow();
+	setupDebugWindow(m_debugWindow);
+	m_debugWindow->show();
+
+	m_db = new DataBase(this);
+	m_db->connect();
+
+	//Connecting all slots
 	connect(m_createTableDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_createTableConfirm()));
+
+	m_mainForm.setupUi(this);
+	updateTablesList();
 }
 void BTables::MainWindow::updateTablesList()
 {
@@ -51,7 +61,7 @@ void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 		for (size_t x = 0; x < dataOfTable[y].size(); x++)
 		{
 			QTableWidgetItem* item = new QTableWidgetItem();
-			item->setData(Qt::DisplayRole, dataOfTable[y][x]);
+			item->setData(Qt::EditRole, dataOfTable[y][x]);
 			m_mainForm.currentTable->setItem(y, x, item);
 		}
 	}
@@ -65,12 +75,21 @@ void BTables::MainWindow::on_createTableConfirm()
 		updateTablesList();
 		m_createTableDialog.done(0);
 		infoMessage("New table was create");
+		return;
 	}
 	warnMessage("Name field table is empty");
 }
 void BTables::MainWindow::on_createTableButton_clicked()
 {
 	m_createTableDialog.exec();
+}
+void BTables::MainWindow::on_addFieldButton_clicked()
+{
+	for (size_t x = 0; x < m_db->getColumns()
+	QTableWidgetItem* item = new QTableWidgetItem();
+	item->setData(Qt::EditRole, "New field");
+
+	m_mainForm.currentTable->setItem()
 }
 void BTables::MainWindow::on_closeButton_clicked()
 {

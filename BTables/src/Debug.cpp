@@ -2,7 +2,7 @@
 
 namespace BTables
 {
-	DebugWindow* debugWindow = new DebugWindow();
+	DebugWindow* debugWindow = nullptr;
 }
 
 BTables::DebugWindow::DebugWindow() : QWidget()
@@ -13,11 +13,21 @@ BTables::DebugWindow::DebugWindow() : QWidget()
 
 void BTables::DebugWindow::pushMessage(const QString type, const QString message)
 {
+	if (debugWindow == nullptr)
+	{
+		QCoreApplication::quit();
+	}
+
 	QString debugString = "[%1] [%2] %3";
 	debugString = debugString.arg(QDateTime().currentDateTime().toString("dd.MM.yyyy hh:mm:ss"));
 	debugString = debugString.arg(type);
 	debugString = debugString.arg(message);
 	m_debugWindow.console->append(debugString);
+}
+
+void BTables::setupDebugWindow(DebugWindow* ptrWindow)
+{
+	debugWindow = ptrWindow;
 }
 
 void BTables::sqlMessage(QSqlQuery* query, const QString message)
