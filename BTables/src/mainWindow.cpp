@@ -18,6 +18,32 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	m_mainForm.setupUi(this);
 	updateTablesList();
 }
+QString BTables::MainWindow::getCurrentTableName()
+{
+	return m_mainForm.availableTables->currentItem()->text();
+}
+void BTables::MainWindow::loadTable(const QString tableName)
+{
+	m_mainForm.currentTable->blockSignals(true);
+	QVector<TableRow> dataOfTable = m_db->getDataOfTable(tableName);
+	if (dataOfTable.size() == 0)
+	{
+		warnMessage("Selected table was empty");
+	}
+	m_mainForm.currentTable->setRowCount(dataOfTable.size() - 1);
+	m_mainForm.currentTable->setColumnCount(m_db->getColumns(tableName));
+	for (size_t rows = 0; rows < dataOfTable.size(); rows++)
+	{
+		for (size_t unit = 0; unit < dataOfTable[rows].size(); unit++)
+		{
+			QTableWidgetItem* item = new QTableWidgetItem();
+			item->setData(Qt::EditRole, dataOfTable[rows][unit]);
+			m_mainForm.currentTable->setItem(rows, unit, item);
+		}
+	}
+	infoMessage("Succesful load table");
+	m_mainForm.currentTable->blockSignals(false);
+}
 void BTables::MainWindow::updateTablesList()
 {
 	m_mainForm.availableTables->clear();
@@ -47,25 +73,16 @@ void BTables::MainWindow::mouseReleaseEvent(QMouseEvent* event)
 	m_dragPosition = kInvalidPoint;
 	QWidget::mouseReleaseEvent(event);
 }
+void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
+{
+	infoMessage("Changes at: x:" + QString::number(item->row()) + " y: " + QString::number(item->column()));
+	infoMessage("Value: " + item->text());
+	m_db->updateAt(getCurrentTableName(), item->row(), item->column(), item->text());
+}
 void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 {
 	m_mainForm.currentTable->clear();
-	QVector<QVector<QString>> dataOfTable = m_db->getDataOfTable(item->text());
-	if (dataOfTable.size() == 0)
-	{
-		warnMessage("Selected table was empty");
-		return;
-	}
-	for (size_t y = 0; y < dataOfTable.size(); y++)
-	{
-		for (size_t x = 0; x < dataOfTable[y].size(); x++)
-		{
-			QTableWidgetItem* item = new QTableWidgetItem();
-			item->setData(Qt::EditRole, dataOfTable[y][x]);
-			m_mainForm.currentTable->setItem(y, x, item);
-		}
-	}
-	infoMessage("Succesful load table");
+	loadTable(item->text());
 }
 void BTables::MainWindow::on_createTableConfirm()
 {
@@ -74,6 +91,11 @@ void BTables::MainWindow::on_createTableConfirm()
 		m_db->createTable(m_createTableDialog.getTableName(), m_createTableDialog.getNumberColumns());
 		updateTablesList();
 		m_createTableDialog.done(0);
+		if (m_db->tables().size() == 1)
+		{
+			m_mainForm.availableTables->setCurrentRow(0);
+			loadTable(m_createTableDialog.getTableName());
+		}
 		infoMessage("New table was create");
 		return;
 	}
@@ -85,11 +107,18 @@ void BTables::MainWindow::on_createTableButton_clicked()
 }
 void BTables::MainWindow::on_addFieldButton_clicked()
 {
-	for (size_t x = 0; x < m_db->getColumns()
-	QTableWidgetItem* item = new QTableWidgetItem();
-	item->setData(Qt::EditRole, "New field");
-
-	m_mainForm.currentTable->setItem()
+	infoMessage("Start of creating new field");
+	TableRow row;
+	const size_t columnsCount = m_db->getColumns(getCurrentTableName());
+	m_mainForm.currentTable->insertRow(m_mainForm.currentTable->rowCount());
+	for (size_t x = 0; x < columnsCount; x++)
+	{
+		QTableWidgetItem* item = new QTableWidgetItem();
+		item->setData(Qt::EditRole, "");
+		row.push_back("");
+		m_mainForm.currentTable->setItem(m_mainForm.currentTable->rowCount() - 1, x, item);
+	}
+	m_db->addNewField(getCurrentTableName(), row);
 }
 void BTables::MainWindow::on_closeButton_clicked()
 {

@@ -17,7 +17,6 @@ namespace BTables
 		Ui::MainWindowForm m_mainForm;
 		CreateTableDialog m_createTableDialog;
 		DebugWindow* m_debugWindow;
-
 		DataBase* m_db;
 	public:
 		MainWindow(QWidget* parent = nullptr);
@@ -27,8 +26,11 @@ namespace BTables
 		void mouseMoveEvent(QMouseEvent* event) override;
 		void mouseReleaseEvent(QMouseEvent* event) override;
 	private:
+		QString getCurrentTableName();
+		void loadTable(const QString tableName);
 		void updateTablesList();
 	public slots:
+		void on_currentTable_itemChanged(QTableWidgetItem* item);
 		void on_createTableConfirm();
 		void on_closeButton_clicked();
 		void on_availableTables_itemClicked(QListWidgetItem* item);
