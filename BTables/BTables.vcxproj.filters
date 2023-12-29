@@ -42,6 +42,9 @@
     <ClCompile Include="src\DataParser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SetColumnsDialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Include.h">
@@ -64,11 +67,15 @@
     <QtMoc Include="include\Debug.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
+    <QtMoc Include="include\SetColumnsDialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="forms\mainWindowForm.ui" />
     <QtUic Include="forms\debugWindow.ui" />
     <QtUic Include="forms\createTableButtonDialog.ui" />
+    <QtUic Include="forms\setColumnsDialog.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc" />

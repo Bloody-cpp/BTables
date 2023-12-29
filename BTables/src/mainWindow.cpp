@@ -14,9 +14,16 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 
 	//Connecting all slots
 	connect(m_createTableDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_createTableConfirm()));
+	connect(m_setColumnsDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_setColumnsConfirm()));
 
 	m_mainForm.setupUi(this);
 	updateTablesList();
+	QStringList tables = m_db->tables();
+	if (!tables.isEmpty())
+	{
+		m_mainForm.availableTables->setCurrentRow(0);
+		loadTable(tables[0]);
+	}
 }
 QString BTables::MainWindow::getCurrentTableName()
 {
@@ -45,6 +52,10 @@ void BTables::MainWindow::updateTablesList()
 	m_mainForm.availableTables->clear();
 	m_mainForm.availableTables->addItems(m_db->tables());
 }
+bool BTables::MainWindow::isAnyTableExists()
+{
+	return m_db->tables().size() != 0;
+}
 void BTables::MainWindow::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton &&
@@ -68,6 +79,12 @@ void BTables::MainWindow::mouseReleaseEvent(QMouseEvent* event)
 {
 	m_dragPosition = kInvalidPoint;
 	QWidget::mouseReleaseEvent(event);
+}
+void BTables::MainWindow::on_setColumnsConfirm()
+{
+	m_db->setColumns(getCurrentTableName(), m_setColumnsDialog.getNumberColumns());
+	m_setColumnsDialog.done(0);
+	loadTable(getCurrentTableName());
 }
 void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 {
@@ -99,24 +116,36 @@ void BTables::MainWindow::on_createTableConfirm()
 }
 void BTables::MainWindow::on_createTableButton_clicked()
 {
+	m_createTableDialog.getUI()->tableName->setText("");
 	m_createTableDialog.exec();
+}
+void BTables::MainWindow::on_setColumnsButton_clicked()
+{
+	if (isAnyTableExists())
+	{
+		m_setColumnsDialog.getUI()->numberOfColumns->setValue(m_db->getColumns(getCurrentTableName()));
+		m_setColumnsDialog.exec();
+	}
 }
 void BTables::MainWindow::on_addFieldButton_clicked()
 {
-	infoMessage("Start of creating new field");
-	TableRow row;
-	const size_t columnsCount = m_db->getColumns(getCurrentTableName());
-	m_mainForm.currentTable->blockSignals(true);
-	m_mainForm.currentTable->insertRow(m_mainForm.currentTable->rowCount());
-	for (size_t x = 0; x < columnsCount; x++)
+	if (isAnyTableExists())
 	{
-		QTableWidgetItem* item = new QTableWidgetItem();
-		item->setData(Qt::EditRole, "");
-		row.push_back("");
-		m_mainForm.currentTable->setItem(m_mainForm.currentTable->rowCount() - 1, x, item);
+		infoMessage("Start of creating new field");
+		TableRow row;
+		const size_t columnsCount = m_db->getColumns(getCurrentTableName());
+		m_mainForm.currentTable->blockSignals(true);
+		m_mainForm.currentTable->insertRow(m_mainForm.currentTable->rowCount());
+		for (size_t x = 0; x < columnsCount; x++)
+		{
+			QTableWidgetItem* item = new QTableWidgetItem();
+			item->setData(Qt::EditRole, "");
+			row.push_back("");
+			m_mainForm.currentTable->setItem(m_mainForm.currentTable->rowCount() - 1, x, item);
+		}
+		m_mainForm.currentTable->blockSignals(false);
+		m_db->addNewField(getCurrentTableName(), row);
 	}
-	m_mainForm.currentTable->blockSignals(false);
-	m_db->addNewField(getCurrentTableName(), row);
 }
 void BTables::MainWindow::on_closeButton_clicked()
 {

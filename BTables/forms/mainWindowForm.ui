@@ -165,12 +165,12 @@ QPushButton
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="tryButton">
+      <widget class="QPushButton" name="setColumnsButton">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
        <property name="text">
-        <string>Try</string>
+        <string>Edit columns</string>
        </property>
       </widget>
      </item>

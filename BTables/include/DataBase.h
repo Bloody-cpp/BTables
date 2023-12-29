@@ -25,7 +25,7 @@ namespace BTables
 		void addNewField(const QString tableName, QVector<QString> fieldData);
 		void updateField(const QString tableName, QVector<QString> fieldData);
 		void updateAt(const QString tableName, int x, int y, const QString value);
-		void editColumns(const QString tableName, const short newNumberColumns);
+		void setColumns(const QString tableName, const short newNumberColumns);
 		void removeField(const QString tableName, QVector<QString> fieldData);
 		void removeTable(const QString tableName);
 		void updateDataOfTable(const QString tableName, const QString newData);

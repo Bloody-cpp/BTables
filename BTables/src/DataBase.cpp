@@ -104,6 +104,47 @@ void BTables::DataBase::updateField(const QString tableName, QVector<QString> fi
         updateDataOfTable(tableName, serializedResult);
     }
 }
+void BTables::DataBase::setColumns(const QString tableName, const short newNumberColumns)
+{
+    if (hasTable(tableName))
+    {
+        QVector<TableRow> dataOfTable = parseData(getDataFromTable(tableName));
+        const short currentNumberColumns = getColumns(tableName);
+        if (currentNumberColumns == newNumberColumns)
+        {
+            return;
+        }
+        if (currentNumberColumns < newNumberColumns)
+        {
+            for (size_t x = 0; x < dataOfTable.size(); x++)
+            {
+                infoMessage("+ Length of row old: " + QString::number(dataOfTable[x].size()));
+                for (size_t y = 0; y < newNumberColumns - currentNumberColumns; y++)
+                {
+                    dataOfTable[x].push_back("");
+                }
+                infoMessage("+ Length of row: " + QString::number(dataOfTable[x].size()));
+            }
+        }
+        else
+        {
+            for (size_t x = 0; x < dataOfTable.size(); x++)
+            {
+                infoMessage("- Length of row old: " + QString::number(dataOfTable[x].size()));
+                auto beginIter = dataOfTable[x].begin() + (dataOfTable[x].size() - (currentNumberColumns - newNumberColumns));
+                dataOfTable[x].erase(beginIter, dataOfTable[x].end());
+                infoMessage("- Length of row: " + QString::number(dataOfTable[x].size()));
+            }
+        }
+        
+        updateDataOfTable(tableName, serialize(dataOfTable));
+        QSqlQuery* query = new QSqlQuery(m_db);
+        query->prepare("UPDATE tables SET columns = :newColumns WHERE tableName = :tableName");
+        query->bindValue(":newColumns", newNumberColumns);
+        query->bindValue(":tableName", tableName);
+        sqlMessage(query, "Call db.setColumns");
+    }
+}
 void BTables::DataBase::removeField(const QString tableName, QVector<QString> fieldData)
 {
     if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
@@ -151,16 +192,16 @@ QString BTables::DataBase::getDataFromTable(const QString tableName)
     infoMessage("Result of call: " + result);
     return result;
 }
-void BTables::DataBase::editColumns(const QString tableName, const short newNumberColumns)
-{
-}
 void BTables::DataBase::updateDataOfTable(const QString tableName, const QString newData)
 {
-    QSqlQuery* query = new QSqlQuery(m_db);
-    query->prepare("UPDATE tables SET data = :newData WHERE tableName = :tableName");
-    query->bindValue(":newData", newData);
-    query->bindValue(":tableName", tableName);
-    sqlMessage(query, "Call db.updateDataOfTable");
+    if (hasTable(tableName))
+    {
+        QSqlQuery* query = new QSqlQuery(m_db);
+        query->prepare("UPDATE tables SET data = :newData WHERE tableName = :tableName");
+        query->bindValue(":newData", newData);
+        query->bindValue(":tableName", tableName);
+        sqlMessage(query, "Call db.updateDataOfTable");
+    }
 }
 size_t BTables::DataBase::searchIndexOfRow(QVector<QVector<QString>> decode, QVector<QString> row)
 {

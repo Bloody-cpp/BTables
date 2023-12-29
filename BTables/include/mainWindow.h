@@ -2,6 +2,7 @@
 #include <Include.h>
 #include <ui_mainWindowForm.h>
 #include <CreateTableDialog.h>
+#include <SetColumnsDialog.h>
 #include <DataBase.h>
 #include <Debug.h>
 
@@ -16,6 +17,7 @@ namespace BTables
 
 		Ui::MainWindowForm m_mainForm;
 		CreateTableDialog m_createTableDialog;
+		SetColumnsDialog m_setColumnsDialog;
 		DebugWindow* m_debugWindow;
 		DataBase* m_db;
 	public:
@@ -29,12 +31,20 @@ namespace BTables
 		QString getCurrentTableName();
 		void loadTable(const QString tableName);
 		void updateTablesList();
+		bool isAnyTableExists();
 	public slots:
-		void on_currentTable_itemChanged(QTableWidgetItem* item);
+		//Dialog end slots
 		void on_createTableConfirm();
+		void on_setColumnsConfirm();
+
+		//Dialog start slots
+		void on_createTableButton_clicked();
+		void on_setColumnsButton_clicked();
+
+		//Main ui slots
+		void on_currentTable_itemChanged(QTableWidgetItem* item);
 		void on_closeButton_clicked();
 		void on_availableTables_itemClicked(QListWidgetItem* item);
-		void on_createTableButton_clicked();
 		void on_addFieldButton_clicked();
 	};
 }
