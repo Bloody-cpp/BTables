@@ -33,18 +33,21 @@
     <ClCompile Include="src\DataBase.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DebugWindow.cpp">
+    <ClCompile Include="src\CreateTableDialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CreateTableDialog.cpp">
+    <ClCompile Include="src\Debug.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataParser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\DefaultInclude.h">
+    <ClInclude Include="include\Include.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Global.h">
+    <ClInclude Include="include\DataParser.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -55,10 +58,10 @@
     <QtMoc Include="include\DataBase.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\DebugWindow.h">
+    <QtMoc Include="include\CreateTableDialog.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\CreateTableDialog.h">
+    <QtMoc Include="include\Debug.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>

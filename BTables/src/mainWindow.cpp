@@ -26,11 +26,7 @@ void BTables::MainWindow::loadTable(const QString tableName)
 {
 	m_mainForm.currentTable->blockSignals(true);
 	QVector<TableRow> dataOfTable = m_db->getDataOfTable(tableName);
-	if (dataOfTable.size() == 0)
-	{
-		warnMessage("Selected table was empty");
-	}
-	m_mainForm.currentTable->setRowCount(dataOfTable.size() - 1);
+	m_mainForm.currentTable->setRowCount(dataOfTable.size());
 	m_mainForm.currentTable->setColumnCount(m_db->getColumns(tableName));
 	for (size_t rows = 0; rows < dataOfTable.size(); rows++)
 	{
@@ -75,9 +71,9 @@ void BTables::MainWindow::mouseReleaseEvent(QMouseEvent* event)
 }
 void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 {
-	infoMessage("Changes at: x:" + QString::number(item->row()) + " y: " + QString::number(item->column()));
+	infoMessage("Changes at: x:" + QString::number(item->column()) + " y: " + QString::number(item->row()));
 	infoMessage("Value: " + item->text());
-	m_db->updateAt(getCurrentTableName(), item->row(), item->column(), item->text());
+	m_db->updateAt(getCurrentTableName(), item->column(), item->row(), item->text());
 }
 void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 {
@@ -89,8 +85,8 @@ void BTables::MainWindow::on_createTableConfirm()
 	if (m_createTableDialog.checkEmpty())
 	{
 		m_db->createTable(m_createTableDialog.getTableName(), m_createTableDialog.getNumberColumns());
-		updateTablesList();
 		m_createTableDialog.done(0);
+		updateTablesList();
 		if (m_db->tables().size() == 1)
 		{
 			m_mainForm.availableTables->setCurrentRow(0);
@@ -110,6 +106,7 @@ void BTables::MainWindow::on_addFieldButton_clicked()
 	infoMessage("Start of creating new field");
 	TableRow row;
 	const size_t columnsCount = m_db->getColumns(getCurrentTableName());
+	m_mainForm.currentTable->blockSignals(true);
 	m_mainForm.currentTable->insertRow(m_mainForm.currentTable->rowCount());
 	for (size_t x = 0; x < columnsCount; x++)
 	{
@@ -118,6 +115,7 @@ void BTables::MainWindow::on_addFieldButton_clicked()
 		row.push_back("");
 		m_mainForm.currentTable->setItem(m_mainForm.currentTable->rowCount() - 1, x, item);
 	}
+	m_mainForm.currentTable->blockSignals(false);
 	m_db->addNewField(getCurrentTableName(), row);
 }
 void BTables::MainWindow::on_closeButton_clicked()

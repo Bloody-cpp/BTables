@@ -184,6 +184,7 @@
     <None Include="BTables.qtvscr" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\DataParser.cpp" />
     <ClCompile Include="src\CreateTableDialog.cpp" />
     <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\DataBase.cpp" />
@@ -194,6 +195,7 @@
     <QtMoc Include="include\DataBase.h" />
     <QtMoc Include="include\Debug.h" />
     <QtMoc Include="include\CreateTableDialog.h" />
+    <ClInclude Include="include\DataParser.h" />
     <ClInclude Include="include\Include.h" />
     <QtMoc Include="include\MainWindow.h" />
   </ItemGroup>

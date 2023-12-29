@@ -26,11 +26,11 @@ QStringList BTables::DataBase::tables()
 {
     QStringList list;
     QSqlQuery* query = new QSqlQuery(m_db);
-    query->prepare("SELECT * FROM tables");
+    query->prepare("SELECT tableName FROM tables");
     sqlMessage(query, "Call db.tables");
     while (query->next())
     {
-        list.push_back(query->value("tableName").toString());
+        list.push_back(query->value(0).toString());
     }
     return list;
 }
@@ -64,7 +64,7 @@ void BTables::DataBase::createTable(const QString tableName, short numberColumns
     query->prepare("INSERT INTO tables(tableName, data, columns) VALUES(:tableName, :data, :columns)");
     query->bindValue(":tableName", tableName);
     query->bindValue(":columns", numberColumns);
-    query->bindValue(":data", serializeRow(TableRow(numberColumns, "")));
+    query->bindValue(":data", addToSerialize("", TableRow(numberColumns, "")));
     sqlMessage(query, "Call db.createTable");
 }
 void BTables::DataBase::renameTable(const QString oldName, const QString newName)
@@ -82,7 +82,7 @@ void BTables::DataBase::addNewField(const QString tableName, QVector<QString> fi
 {
     if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
     {
-        QString newData = getDataFromTable(tableName) + serializeRow(fieldData);
+        QString newData = addToSerialize(getDataFromTable(tableName), fieldData);
         updateDataOfTable(tableName, newData);
     }
 }
@@ -99,7 +99,7 @@ void BTables::DataBase::updateField(const QString tableName, QVector<QString> fi
                 needRow[x] = fieldData[x];
             }
         }
-        QString serializedResult = serializeData(decode);
+        QString serializedResult = serialize(decode);
         infoMessage("db.updateField.serialized: " + serializedResult);
         updateDataOfTable(tableName, serializedResult);
     }
@@ -110,7 +110,7 @@ void BTables::DataBase::removeField(const QString tableName, QVector<QString> fi
     {
         QVector<QVector<QString>> decode = parseData(getDataFromTable(tableName));
         decode.erase(decode.begin() + searchIndexOfRow(decode, fieldData));
-        QString serializedResult = serializeData(decode);
+        QString serializedResult = serialize(decode);
         infoMessage("db.removeField.serialized: " + serializedResult);
         updateDataOfTable(tableName, serializedResult);
     }
@@ -134,20 +134,10 @@ void BTables::DataBase::updateAt(const QString tableName, int x, int y, const QS
     if (hasTable(tableName))
     {
         QVector<TableRow> decode = parseData(getDataFromTable(tableName));
-        infoMessage("value is: " + value);
-        for (size_t x = 0; x < decode.size(); x++)
-        {
-
-        }
-        infoMessage("rows: " + QString::number(decode.size()));
-        if (decode.size() != 0)
-        {
-            infoMessage("units: " + QString::number(decode[0].size()));
-        }
-        //decode[x][y] = value;
-        //QString serializedResult = serializeData(decode);
-        //infoMessage("db.updateAt.serialized: " + serializedResult);
-        //updateDataOfTable(tableName, serializedResult);
+        decode[y][x] = value;
+        QString serializedResult = serialize(decode);
+        infoMessage("db.updateAt.serialized: " + serializedResult);
+        updateDataOfTable(tableName, serializedResult);
     }
 }
 QString BTables::DataBase::getDataFromTable(const QString tableName)
@@ -160,6 +150,9 @@ QString BTables::DataBase::getDataFromTable(const QString tableName)
     QString result = query->value(0).toString();
     infoMessage("Result of call: " + result);
     return result;
+}
+void BTables::DataBase::editColumns(const QString tableName, const short newNumberColumns)
+{
 }
 void BTables::DataBase::updateDataOfTable(const QString tableName, const QString newData)
 {
@@ -180,29 +173,6 @@ size_t BTables::DataBase::searchIndexOfRow(QVector<QVector<QString>> decode, QVe
     }
     errorMessage("Can`t search index of row");
     return SIZE_MAX;
-}
-QString BTables::DataBase::serializeRow(QVector<QString> rowData)
-{
-    return rowData.join('.');
-}
-QString BTables::DataBase::serializeData(QVector<BTables::TableRow> data)
-{
-    QVector<QString> bufferForPackRows;
-    for (size_t x = 0; x < data.size(); x++)
-    {
-        bufferForPackRows.push_back(data[x].join('.'));
-    }
-    return bufferForPackRows.join(';');
-}
-QVector<BTables::TableRow> BTables::DataBase::parseData(const QString dataString)
-{
-    QVector<BTables::TableRow> resultParse;
-    BTables::TableRow rows = dataString.split(';');
-    for (size_t x = 0; x < rows.size(); x++)
-    {
-        resultParse.push_back(rows[x].split('.'));
-    }
-    return resultParse;
 }
 bool BTables::DataBase::hasTable(const QString tableName)
 {
