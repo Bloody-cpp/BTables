@@ -14,6 +14,7 @@ namespace BTables
 		QString getTableName();
 		qint16 getNumberColumns();
 		Ui::CreateTableDialogForm* getUI();
+		void labelWarning(const QString warningString);
 		bool checkEmpty();
 		~CreateTableDialog() {};
 	};

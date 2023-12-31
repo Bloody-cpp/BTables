@@ -231,6 +231,9 @@ QPushButton
 color: rgb(240, 240, 240);
 border-color: transparent</string>
    </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
   </widget>
  </widget>
  <resources>

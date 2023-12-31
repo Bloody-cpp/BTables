@@ -20,11 +20,16 @@ Ui::CreateTableDialogForm* BTables::CreateTableDialog::getUI()
 	return &m_dialog;
 }
 
+void BTables::CreateTableDialog::labelWarning(const QString warningString)
+{
+	m_dialog.tableNameLabel->setText(warningString);
+}
+
 bool BTables::CreateTableDialog::checkEmpty()
 {
 	if (getTableName().isEmpty())
 	{
-		m_dialog.tableNameLabel->setText("Fill this");
+		labelWarning("Fill this");
 		return false;
 	}
 	return true;

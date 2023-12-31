@@ -18,12 +18,7 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 
 	m_mainForm.setupUi(this);
 	updateTablesList();
-	QStringList tables = m_db->tables();
-	if (!tables.isEmpty())
-	{
-		m_mainForm.availableTables->setCurrentRow(0);
-		loadTable(tables[0]);
-	}
+	loadFirstExistsTable();
 }
 QString BTables::MainWindow::getCurrentTableName()
 {
@@ -55,6 +50,15 @@ void BTables::MainWindow::updateTablesList()
 bool BTables::MainWindow::isAnyTableExists()
 {
 	return m_db->tables().size() != 0;
+}
+void BTables::MainWindow::loadFirstExistsTable()
+{
+	QStringList tables = m_db->tables();
+	if (!tables.isEmpty())
+	{
+		m_mainForm.availableTables->setCurrentRow(0);
+		loadTable(tables[0]);
+	}
 }
 void BTables::MainWindow::mousePressEvent(QMouseEvent* event)
 {
@@ -101,6 +105,15 @@ void BTables::MainWindow::on_createTableConfirm()
 {
 	if (m_createTableDialog.checkEmpty())
 	{
+		QStringList tables = m_db->tables();
+		for (size_t x = 0; x < tables.size(); x++)
+		{
+			if (tables[x] == m_createTableDialog.getTableName())
+			{
+				m_createTableDialog.labelWarning("Already use");
+				return;
+			}
+		}
 		m_db->createTable(m_createTableDialog.getTableName(), m_createTableDialog.getNumberColumns());
 		m_createTableDialog.done(0);
 		updateTablesList();
@@ -151,4 +164,38 @@ void BTables::MainWindow::on_closeButton_clicked()
 {
 	m_db->~DataBase();
 	QCoreApplication::quit();
+}
+void BTables::MainWindow::on_deleteTableButton_clicked()
+{
+	if (isAnyTableExists())
+	{
+		m_db->removeTable(getCurrentTableName());
+		updateTablesList();
+		if (isAnyTableExists())
+		{
+			loadFirstExistsTable();
+		}
+		else
+		{
+			m_mainForm.currentTable->setRowCount(0);
+			m_mainForm.currentTable->setColumnCount(0);
+			m_mainForm.currentTable->clear();
+		}
+	}
+}
+void BTables::MainWindow::on_removeFieldButton_clicked()
+{
+	if (isAnyTableExists() && m_mainForm.currentTable->rowCount() > 1)
+	{
+		const size_t currentRow = m_mainForm.currentTable->currentRow();
+		if (currentRow == SIZE_MAX)
+		{
+			warnMessage("Any row wasn`t select");
+			return;
+		}
+		QVector<TableRow> tableData = m_db->getDataOfTable(getCurrentTableName());
+		m_db->removeField(getCurrentTableName(), tableData[currentRow]);
+		loadTable(getCurrentTableName());
+		infoMessage("Succeful remove field");
+	}
 }
