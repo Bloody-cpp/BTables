@@ -8,6 +8,7 @@
 namespace BTables
 {
 	using TableRow = QVector<QString>;
+	using TableColumn = QVector<QString>;
 
 	class DataBase : public QObject
 	{
@@ -26,7 +27,7 @@ namespace BTables
 		void updateField(const QString tableName, QVector<QString> fieldData);
 		void updateAt(const QString tableName, int x, int y, const QString value);
 		void setColumns(const QString tableName, const short newNumberColumns);
-		void removeField(const QString tableName, QVector<QString> fieldData);
+		void removeField(const QString tableName, const size_t yCoord);
 		void removeTable(const QString tableName);
 		void updateDataOfTable(const QString tableName, const QString newData);
 		~DataBase();

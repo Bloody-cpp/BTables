@@ -184,6 +184,7 @@
     <None Include="BTables.qtvscr" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GuessResultsDialog.cpp" />
     <ClCompile Include="src\SetColumnsDialog.cpp" />
     <ClCompile Include="src\DataParser.cpp" />
     <ClCompile Include="src\CreateTableDialog.cpp" />
@@ -197,6 +198,7 @@
     <QtMoc Include="include\DataBase.h" />
     <QtMoc Include="include\Debug.h" />
     <QtMoc Include="include\CreateTableDialog.h" />
+    <QtMoc Include="include\GuessResultsDialog.h" />
     <ClInclude Include="include\DataParser.h" />
     <ClInclude Include="include\Include.h" />
     <QtMoc Include="include\MainWindow.h" />
@@ -204,6 +206,7 @@
   <ItemGroup>
     <QtUic Include="forms\createTableButtonDialog.ui" />
     <QtUic Include="forms\debugWindow.ui" />
+    <QtUic Include="forms\guessResultsDialog.ui" />
     <QtUic Include="forms\mainWindowForm.ui" />
     <QtUic Include="forms\setColumnsDialog.ui" />
   </ItemGroup>

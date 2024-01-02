@@ -15,8 +15,10 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	//Connecting all slots
 	connect(m_createTableDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_createTableConfirm()));
 	connect(m_setColumnsDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_setColumnsConfirm()));
-
+	
 	m_mainForm.setupUi(this);
+	m_mainForm.currentTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+	m_mainForm.currentTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 	updateTablesList();
 	loadFirstExistsTable();
 }
@@ -27,6 +29,7 @@ QString BTables::MainWindow::getCurrentTableName()
 void BTables::MainWindow::loadTable(const QString tableName)
 {
 	m_mainForm.currentTable->blockSignals(true);
+	m_mainForm.currentTable->clear();
 	QVector<TableRow> dataOfTable = m_db->getDataOfTable(tableName);
 	m_mainForm.currentTable->setRowCount(dataOfTable.size());
 	m_mainForm.currentTable->setColumnCount(m_db->getColumns(tableName));
@@ -60,6 +63,14 @@ void BTables::MainWindow::loadFirstExistsTable()
 		loadTable(tables[0]);
 	}
 }
+void BTables::MainWindow::setOtherButtonsEnabled(const bool state)
+{
+	m_mainForm.addFieldButton->setEnabled(state);
+	m_mainForm.createTableButton->setEnabled(state);
+	m_mainForm.deleteTableButton->setEnabled(state);
+	m_mainForm.removeFieldButton->setEnabled(state);
+	m_mainForm.setColumnsButton->setEnabled(state);
+}
 void BTables::MainWindow::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton &&
@@ -92,14 +103,24 @@ void BTables::MainWindow::on_setColumnsConfirm()
 }
 void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 {
-	infoMessage("Changes at: x:" + QString::number(item->column()) + " y: " + QString::number(item->row()));
-	infoMessage("Value: " + item->text());
-	m_db->updateAt(getCurrentTableName(), item->column(), item->row(), item->text());
+	if (!m_guessTry)
+	{
+		infoMessage("Changes at: x:" + QString::number(item->column()) + " y: " + QString::number(item->row()));
+		infoMessage("Value: " + item->text());
+		m_db->updateAt(getCurrentTableName(), item->column(), item->row(), item->text());
+	}
+}
+void BTables::MainWindow::on_currentTable_itemDoubleClicked(QTableWidgetItem* item)
+{
+	
 }
 void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 {
-	m_mainForm.currentTable->clear();
-	loadTable(item->text());
+	if (!m_guessTry)
+	{
+		m_mainForm.currentTable->clear();
+		loadTable(item->text());
+	}
 }
 void BTables::MainWindow::on_createTableConfirm()
 {
@@ -193,9 +214,66 @@ void BTables::MainWindow::on_removeFieldButton_clicked()
 			warnMessage("Any row wasn`t select");
 			return;
 		}
-		QVector<TableRow> tableData = m_db->getDataOfTable(getCurrentTableName());
-		m_db->removeField(getCurrentTableName(), tableData[currentRow]);
+		m_db->removeField(getCurrentTableName(), currentRow);
 		loadTable(getCurrentTableName());
 		infoMessage("Succeful remove field");
+	}
+}
+void BTables::MainWindow::on_viewButton_clicked()
+{
+	if (isAnyTableExists())
+	{
+		m_guessTry = !m_guessTry;
+		setOtherButtonsEnabled(!m_guessTry);
+		m_mainForm.viewButton->setText("View");
+
+		if (m_guessTry)
+		{			
+			const size_t iColumns = m_mainForm.currentTable->columnCount();
+			const size_t iRows = m_mainForm.currentTable->rowCount();
+			QVector<TableRow> tableData = m_db->getDataOfTable(getCurrentTableName());
+			m_mainForm.currentTable->blockSignals(true);
+
+			// 1. Clear all items except first column
+			for (size_t y = 0; y < iRows; y++)
+			{
+				for (size_t x = 1; x < iColumns; x++)
+				{
+					QTableWidgetItem* item = new QTableWidgetItem();
+					item->setData(Qt::EditRole, "");
+					m_mainForm.currentTable->setItem(y, x, item);
+				}
+			}
+
+			// 2. First column must editable and with mixed data
+			QVector<QString> mixedData;
+			for (size_t x = 0; x < iRows; x++)
+			{
+				mixedData.push_back(tableData[x][0]);
+			}
+			unsigned int ms = static_cast<unsigned>(QDateTime::currentMSecsSinceEpoch());
+			std::mt19937 gen(ms);
+			std::shuffle(mixedData.begin(), mixedData.end(), gen);
+
+			for (size_t y = 0; y < iRows; y++)
+			{
+				QTableWidgetItem* item = new QTableWidgetItem();
+				item->setData(Qt::DisplayRole, mixedData[y]);
+				item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+				item->setBackground(QBrush((QColor(31, 31, 31, 130))));
+				m_mainForm.currentTable->setItem(y, 0, item);
+			}
+			m_mainForm.currentTable->blockSignals(false);
+
+			// 3. Add any place in window button to end try
+			// 4. Show window with results
+			// 5. Return old position of items
+		}
+		else
+		{
+			//...
+			m_mainForm.viewButton->setText("Try");
+			loadTable(getCurrentTableName());
+		}
 	}
 }

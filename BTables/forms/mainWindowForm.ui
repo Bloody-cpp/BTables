@@ -160,17 +160,23 @@ QPushButton
         <string notr="true"/>
        </property>
        <property name="text">
-        <string>View</string>
+        <string>Try</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="setColumnsButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="styleSheet">
         <string notr="true"/>
        </property>
        <property name="text">
         <string>Edit columns</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -227,12 +233,49 @@ QPushButton
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(31, 31, 31, 120);
-color: rgb(240, 240, 240);
-border-color: transparent</string>
+    <string notr="true">QTableView {
+	background-color: rgba(31, 31, 31, 120);
+	color: rgb(240, 240, 240);
+	border-color: transparent;
+}
+QTableView::item:selected {
+    background-color :  rgba(31, 31, 31, 100);
+     selection-color : #000000;
+	 border: none;
+}
+QTableWidget:edit-focus{
+	background-color: rgba(31, 31, 31, 100);
+} 
+QTableView QTableCornerButton::section {
+    background-color: rgb(50, 98, 124)
+}
+QHeaderView::section {
+    background-color: rgb(50, 98, 124);
+}
+QHeaderView::section::checked {
+    background-color: rgb(50, 98, 124);
+}
+QHeaderView {
+	background-color: transparent;
+}</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
+   </property>
+   <property name="showGrid">
+    <bool>true</bool>
+   </property>
+   <property name="gridStyle">
+    <enum>Qt::SolidLine</enum>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+   <property name="cornerButtonEnabled">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>

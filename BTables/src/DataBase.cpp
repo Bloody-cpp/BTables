@@ -145,12 +145,12 @@ void BTables::DataBase::setColumns(const QString tableName, const short newNumbe
         sqlMessage(query, "Call db.setColumns");
     }
 }
-void BTables::DataBase::removeField(const QString tableName, QVector<QString> fieldData)
+void BTables::DataBase::removeField(const QString tableName, const size_t yCoord)
 {
-    if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
+    if (hasTable(tableName))
     {
-        QVector<QVector<QString>> decode = parseData(getDataFromTable(tableName));
-        decode.erase(decode.begin() + searchIndexOfRow(decode, fieldData));
+        QVector<QVector<QString>> decode = getDataOfTable(tableName);
+        decode.erase(decode.begin() + yCoord);
         QString serializedResult = serialize(decode);
         infoMessage("db.removeField.serialized: " + serializedResult);
         updateDataOfTable(tableName, serializedResult);
