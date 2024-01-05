@@ -3,6 +3,7 @@
 #include <ui_mainWindowForm.h>
 #include <CreateTableDialog.h>
 #include <SetColumnsDialog.h>
+#include <GuessResultsDialog.h>
 #include <DataBase.h>
 #include <Debug.h>
 
@@ -20,6 +21,13 @@ namespace BTables
 {
 	constexpr QPoint kInvalidPoint(-1, -1);
 
+	enum GuessState
+	{
+		MainMenu,
+		GuessMenu,
+		ErrorMenu
+	};
+
 	class MainWindow : public QMainWindow
 	{
 		Q_OBJECT
@@ -30,7 +38,7 @@ namespace BTables
 		DebugWindow* m_debugWindow;
 		DataBase* m_db;
 		QPoint m_dragPosition;
-		bool m_guessTry = false;
+		GuessState m_windowState = MainMenu;
 	public:
 		MainWindow(QWidget* parent = nullptr);
 		~MainWindow() {}
@@ -39,12 +47,17 @@ namespace BTables
 		void mouseMoveEvent(QMouseEvent* event) override;
 		void mouseReleaseEvent(QMouseEvent* event) override;
 	private:
+		bool isAnyTableExists();
 		QString getCurrentTableName();
 		void loadTable(const QString tableName);
 		void updateTablesList();
-		bool isAnyTableExists();
 		void loadFirstExistsTable();
 		void setOtherButtonsEnabled(const bool state);
+		QVector<TableRow> getCurrentTableState();
+		size_t searchRowByFirstValue(const QVector<TableRow> rows, const QString fValue);
+		GuessResults makeResults(const QVector<TableRow> currentTableState);
+		void forbidChangeItem(QTableWidgetItem* item);
+		void accessChangeItem(QTableWidgetItem* item);
 	public slots:
 		//Dialog end slots
 		void on_createTableConfirm();

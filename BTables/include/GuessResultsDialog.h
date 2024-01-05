@@ -1,13 +1,30 @@
 #pragma once
 #include <Include.h>
 
-class GuessResultsDialog : public QDialog
+namespace BTables
 {
-	Q_OBJECT
+	struct TableCoord
+	{
+		TableCoord(size_t x, size_t y) : m_x(x), m_y(y) {}
+		size_t m_x;
+		size_t m_y;
+	};
 
-public:
-	explicit GuessResultsDialog(QWidget* parent);
+	struct GuessResults
+	{
+		size_t totalAnswers = 0;
+		size_t trueAnswers = 0;
+		QVector<TableCoord> errorPlaces;
+	};
 
-	~GuessResultsDialog();
-};
+	class GuessResultsDialog : public QDialog
+	{
+		Q_OBJECT
 
+	public:
+		explicit GuessResultsDialog(QWidget* parent);
+
+		~GuessResultsDialog();
+	};
+
+}

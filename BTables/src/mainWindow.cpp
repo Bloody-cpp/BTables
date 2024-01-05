@@ -19,6 +19,7 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	m_mainForm.setupUi(this);
 	m_mainForm.currentTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 	m_mainForm.currentTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+	m_mainForm.currentTable->setFocusPolicy(Qt::NoFocus);
 	updateTablesList();
 	loadFirstExistsTable();
 }
@@ -71,6 +72,71 @@ void BTables::MainWindow::setOtherButtonsEnabled(const bool state)
 	m_mainForm.removeFieldButton->setEnabled(state);
 	m_mainForm.setColumnsButton->setEnabled(state);
 }
+QVector<BTables::TableRow> BTables::MainWindow::getCurrentTableState()
+{
+	if (isAnyTableExists())
+	{
+		QVector<BTables::TableRow> tableData;
+		for (size_t y = 0; y < m_mainForm.currentTable->rowCount(); y++)
+		{
+			TableRow row;
+			for (size_t x = 0; x < m_mainForm.currentTable->columnCount(); x++)
+			{
+				row.push_back(m_mainForm.currentTable->item(y, x)->text());
+			}
+			tableData.push_back(row);
+		}
+		return tableData;
+	}
+
+	return QVector<BTables::TableRow>();
+}
+size_t BTables::MainWindow::searchRowByFirstValue(const QVector<TableRow> rows, const QString fValue)
+{
+	for (size_t x = 0; x < rows.size(); x++)
+	{
+		if (rows[x][0] == fValue)
+		{
+			return x;
+		}
+	}
+	return SIZE_MAX;
+}
+BTables::GuessResults BTables::MainWindow::makeResults(const QVector<TableRow> currentTableState)
+{
+	QVector<TableRow> startValues = m_db->getDataOfTable(getCurrentTableName());
+	GuessResults results;
+	results.totalAnswers = currentTableState.size();
+	for (size_t x = 0; x < startValues.size(); x++)
+	{
+		const size_t index = searchRowByFirstValue(currentTableState, startValues[x][0]);
+		TableRow currentRow = currentTableState[index];
+		bool wasErrorInRow = false;
+		for (size_t y = 0; y < currentRow.size(); y++)
+		{
+			if (startValues[x][y] != currentRow[y])
+			{
+				wasErrorInRow = true;
+				results.errorPlaces.push_back({ y, index });
+			}
+		}
+		if (!wasErrorInRow)
+		{
+			results.trueAnswers++;
+		}
+	}
+	return results;
+}
+void BTables::MainWindow::forbidChangeItem(QTableWidgetItem* item)
+{
+	item->setFlags(item->flags() & (~Qt::ItemIsEditable));
+	item->setFlags(item->flags() & (~Qt::ItemIsSelectable));
+}
+void BTables::MainWindow::accessChangeItem(QTableWidgetItem* item)
+{
+	item->setFlags(item->flags() | Qt::ItemIsEditable);
+	item->setFlags(item->flags() | Qt::ItemIsSelectable);
+}
 void BTables::MainWindow::mousePressEvent(QMouseEvent* event)
 {
 	if (event->button() == Qt::LeftButton &&
@@ -103,7 +169,7 @@ void BTables::MainWindow::on_setColumnsConfirm()
 }
 void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 {
-	if (!m_guessTry)
+	if (m_windowState == MainMenu)
 	{
 		infoMessage("Changes at: x:" + QString::number(item->column()) + " y: " + QString::number(item->row()));
 		infoMessage("Value: " + item->text());
@@ -116,7 +182,7 @@ void BTables::MainWindow::on_currentTable_itemDoubleClicked(QTableWidgetItem* it
 }
 void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 {
-	if (!m_guessTry)
+	if (m_windowState == MainMenu)
 	{
 		m_mainForm.currentTable->clear();
 		loadTable(item->text());
@@ -223,12 +289,12 @@ void BTables::MainWindow::on_viewButton_clicked()
 {
 	if (isAnyTableExists())
 	{
-		m_guessTry = !m_guessTry;
-		setOtherButtonsEnabled(!m_guessTry);
-		m_mainForm.viewButton->setText("View");
+		if (m_windowState == MainMenu)
+		{		
+			m_windowState = GuessMenu;
+			setOtherButtonsEnabled(false);
+			m_mainForm.viewButton->setText("View errors");
 
-		if (m_guessTry)
-		{			
 			const size_t iColumns = m_mainForm.currentTable->columnCount();
 			const size_t iRows = m_mainForm.currentTable->rowCount();
 			QVector<TableRow> tableData = m_db->getDataOfTable(getCurrentTableName());
@@ -259,21 +325,54 @@ void BTables::MainWindow::on_viewButton_clicked()
 			{
 				QTableWidgetItem* item = new QTableWidgetItem();
 				item->setData(Qt::DisplayRole, mixedData[y]);
-				item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+				forbidChangeItem(item);
 				item->setBackground(QBrush((QColor(31, 31, 31, 130))));
 				m_mainForm.currentTable->setItem(y, 0, item);
 			}
 			m_mainForm.currentTable->blockSignals(false);
+			return;
+
 
 			// 3. Add any place in window button to end try
 			// 4. Show window with results
 			// 5. Return old position of items
 		}
-		else
+		if (m_windowState == GuessMenu)
 		{
-			//...
+			m_windowState = ErrorMenu;
+			m_mainForm.viewButton->setText("View");
+
+			//Make results and debug this
+			GuessResults results = makeResults(getCurrentTableState());
+			infoMessage("Total answers: " + QString::number(results.totalAnswers));
+			infoMessage("True answers: " + QString::number(results.trueAnswers));
+
+			//Forbid change items when displayed the errors
+			const size_t iColumns = m_mainForm.currentTable->columnCount();
+			const size_t iRows = m_mainForm.currentTable->rowCount();
+			for (size_t y = 0; y < iRows; y++)
+			{
+				for (size_t x = 0; x < iColumns; x++)
+				{
+					forbidChangeItem(m_mainForm.currentTable->item(y, x));
+				}
+			}
+
+			//Highlight the errors
+			for (size_t x = 0; x < results.errorPlaces.size(); x++)
+			{
+				auto item = m_mainForm.currentTable->item(results.errorPlaces[x].m_y, results.errorPlaces[x].m_x);
+				item->setBackground(QBrush((QColor(121, 0, 0, 130))));
+			}
+			return;
+		}
+		if (m_windowState == ErrorMenu)
+		{
+			m_windowState = MainMenu;
 			m_mainForm.viewButton->setText("Try");
+			setOtherButtonsEnabled(true);
 			loadTable(getCurrentTableName());
+			return;
 		}
 	}
 }

@@ -241,7 +241,7 @@ QPushButton
 QTableView::item:selected {
     background-color :  rgba(31, 31, 31, 100);
      selection-color : #000000;
-	 border: none;
+	 border: transparent;
 }
 QTableWidget:edit-focus{
 	background-color: rgba(31, 31, 31, 100);
