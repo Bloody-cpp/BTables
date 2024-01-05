@@ -106,23 +106,26 @@ BTables::GuessResults BTables::MainWindow::makeResults(const QVector<TableRow> c
 {
 	QVector<TableRow> startValues = m_db->getDataOfTable(getCurrentTableName());
 	GuessResults results;
-	results.totalAnswers = currentTableState.size();
 	for (size_t x = 0; x < startValues.size(); x++)
 	{
 		const size_t index = searchRowByFirstValue(currentTableState, startValues[x][0]);
 		TableRow currentRow = currentTableState[index];
 		bool wasErrorInRow = false;
-		for (size_t y = 0; y < currentRow.size(); y++)
+		if (!startValues[x][0].isEmpty())
 		{
-			if (startValues[x][y] != currentRow[y])
+			results.totalAnswers++;
+			for (size_t y = 0; y < currentRow.size(); y++)
 			{
-				wasErrorInRow = true;
-				results.errorPlaces.push_back({ y, index });
+				if (startValues[x][y] != currentRow[y])
+				{
+					wasErrorInRow = true;
+					results.errorPlaces.push_back({ y, index });
+				}
 			}
-		}
-		if (!wasErrorInRow)
-		{
-			results.trueAnswers++;
+			if (!wasErrorInRow)
+			{
+				results.trueAnswers++;
+			}
 		}
 	}
 	return results;
