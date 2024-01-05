@@ -17,8 +17,7 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	connect(m_setColumnsDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_setColumnsConfirm()));
 	
 	m_mainForm.setupUi(this);
-	m_mainForm.currentTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-	m_mainForm.currentTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+
 	m_mainForm.currentTable->setFocusPolicy(Qt::NoFocus);
 	updateTablesList();
 	loadFirstExistsTable();
@@ -178,10 +177,6 @@ void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 		infoMessage("Value: " + item->text());
 		m_db->updateAt(getCurrentTableName(), item->column(), item->row(), item->text());
 	}
-}
-void BTables::MainWindow::on_currentTable_itemDoubleClicked(QTableWidgetItem* item)
-{
-	
 }
 void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 {

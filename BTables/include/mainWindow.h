@@ -69,7 +69,6 @@ namespace BTables
 
 		//Main ui slots 
 		void on_currentTable_itemChanged(QTableWidgetItem* item);
-		void on_currentTable_itemDoubleClicked(QTableWidgetItem* item);
 		void on_availableTables_itemClicked(QListWidgetItem* item);
 		void on_addFieldButton_clicked();
 		void on_closeButton_clicked();

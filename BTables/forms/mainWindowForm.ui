@@ -237,26 +237,29 @@ QPushButton
 	background-color: rgba(31, 31, 31, 120);
 	color: rgb(240, 240, 240);
 	border-color: transparent;
+	background-selection-color : rgba(31, 31, 31, 90);
 }
 QTableView::item:selected {
     background-color :  rgba(31, 31, 31, 100);
-     selection-color : #000000;
-	 border: transparent;
+ 	background-selection-color : rgba(31, 31, 31, 90);
 }
-QTableWidget:edit-focus{
-	background-color: rgba(31, 31, 31, 100);
-} 
-QTableView QTableCornerButton::section {
-    background-color: rgb(50, 98, 124)
+QTableView::item:selected:hover {
+    background-color :  rgba(31, 31, 31, 100);
+ 	background-selection-color : rgba(31, 31, 31, 90);
+}
+QTableView::item:hover {
+    background-color :  rgba(31, 31, 31, 70);
 }
 QHeaderView::section {
     background-color: rgb(50, 98, 124);
-}
-QHeaderView::section::checked {
-    background-color: rgb(50, 98, 124);
+	border: 1px solid black;
+    border-left: 0px; 
 }
 QHeaderView {
 	background-color: transparent;
+}
+QLineEdit {
+	 background-color :  rgba(31, 31, 31, 0);
 }</string>
    </property>
    <property name="frameShape">
@@ -277,6 +280,30 @@ QHeaderView {
    <property name="cornerButtonEnabled">
     <bool>false</bool>
    </property>
+   <attribute name="horizontalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="horizontalHeaderMinimumSectionSize">
+    <number>100</number>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>100</number>
+   </attribute>
+   <attribute name="horizontalHeaderHighlightSections">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderVisible">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>40</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>40</number>
+   </attribute>
+   <attribute name="verticalHeaderHighlightSections">
+    <bool>false</bool>
+   </attribute>
   </widget>
  </widget>
  <resources>
