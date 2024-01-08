@@ -18,7 +18,6 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	
 	m_mainForm.setupUi(this);
 
-	m_mainForm.currentTable->setFocusPolicy(Qt::NoFocus);
 	updateTablesList();
 	loadFirstExistsTable();
 }
@@ -126,6 +125,13 @@ BTables::GuessResults BTables::MainWindow::makeResults(const QVector<TableRow> c
 				results.trueAnswers++;
 			}
 		}
+		else
+		{
+			for (size_t y = 0; y < startValues[x].size(); y++)
+			{
+				results.errorPlaces.push_back({ y, index });
+			}
+		}
 	}
 	return results;
 }
@@ -138,6 +144,10 @@ void BTables::MainWindow::accessChangeItem(QTableWidgetItem* item)
 {
 	item->setFlags(item->flags() | Qt::ItemIsEditable);
 	item->setFlags(item->flags() | Qt::ItemIsSelectable);
+}
+bool BTables::MainWindow::eventFilter(QObject* object, QEvent* event)
+{
+	return false;
 }
 void BTables::MainWindow::mousePressEvent(QMouseEvent* event)
 {
@@ -177,6 +187,10 @@ void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 		infoMessage("Value: " + item->text());
 		m_db->updateAt(getCurrentTableName(), item->column(), item->row(), item->text());
 	}
+}
+void BTables::MainWindow::on_currentTable_itemClicked(QTableWidgetItem* item)
+{
+	
 }
 void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 {
@@ -356,17 +370,39 @@ void BTables::MainWindow::on_viewButton_clicked()
 				}
 			}
 
-			//Highlight the errors
-			for (size_t x = 0; x < results.errorPlaces.size(); x++)
+			infoMessage("Count of erros places: " + QString::number(results.errorPlaces.size()));
+
+			//Highlight the errors and true answers
+			for (size_t iy = 0; iy < iRows; iy++)
 			{
-				auto item = m_mainForm.currentTable->item(results.errorPlaces[x].m_y, results.errorPlaces[x].m_x);
-				item->setBackground(QBrush((QColor(121, 0, 0, 130))));
+				for (size_t ix = 1; ix < iColumns; ix++)
+				{
+					auto item = m_mainForm.currentTable->item(iy, ix);
+					bool wasError = false;
+					for (size_t x = 0; x < results.errorPlaces.size(); x++)
+					{
+						if (results.errorPlaces[x].m_x == ix && results.errorPlaces[x].m_y == iy)
+						{
+							infoMessage("Error x: " + QString::number(iy) + " y: " + QString::number(ix));
+							item->setBackground(QBrush((QColor(121, 0, 0, 130))));
+							wasError = true;
+							break;
+						}
+					}
+					if (!wasError)
+					{
+						item->setBackground(QBrush((QColor(0, 121, 0, 130))));
+					}
+				}
 			}
+			
+			m_guessResultsDialog.showResults(results);
 			return;
 		}
 		if (m_windowState == ErrorMenu)
 		{
 			m_windowState = MainMenu;
+			m_guessResultsDialog.terminate();
 			m_mainForm.viewButton->setText("Try");
 			setOtherButtonsEnabled(true);
 			loadTable(getCurrentTableName());

@@ -35,6 +35,7 @@ namespace BTables
 		Ui::MainWindowForm m_mainForm;
 		CreateTableDialog m_createTableDialog;
 		SetColumnsDialog m_setColumnsDialog;
+		GuessResultsDialog m_guessResultsDialog;
 		DebugWindow* m_debugWindow;
 		DataBase* m_db;
 		QPoint m_dragPosition;
@@ -58,6 +59,7 @@ namespace BTables
 		GuessResults makeResults(const QVector<TableRow> currentTableState);
 		void forbidChangeItem(QTableWidgetItem* item);
 		void accessChangeItem(QTableWidgetItem* item);
+		bool eventFilter(QObject* object, QEvent* event);
 	public slots:
 		//Dialog end slots
 		void on_createTableConfirm();
@@ -68,7 +70,8 @@ namespace BTables
 		void on_setColumnsButton_clicked();
 
 		//Main ui slots 
-		void on_currentTable_itemChanged(QTableWidgetItem* item);
+		void on_currentTable_itemChanged(QTableWidgetItem* item); 
+		void on_currentTable_itemClicked(QTableWidgetItem* item);
 		void on_availableTables_itemClicked(QListWidgetItem* item);
 		void on_addFieldButton_clicked();
 		void on_closeButton_clicked();

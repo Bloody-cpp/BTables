@@ -13,6 +13,9 @@
   <property name="cursor">
    <cursorShape>ArrowCursor</cursorShape>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Bloody Tables</string>
   </property>
@@ -232,6 +235,9 @@ QPushButton
      <height>615</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">QTableView {
 	background-color: rgba(31, 31, 31, 120);
@@ -242,13 +248,19 @@ QPushButton
 QTableView::item:selected {
     background-color :  rgba(31, 31, 31, 100);
  	background-selection-color : rgba(31, 31, 31, 90);
+	color: rgb(240, 240, 240);
 }
 QTableView::item:selected:hover {
     background-color :  rgba(31, 31, 31, 100);
  	background-selection-color : rgba(31, 31, 31, 90);
+	color: rgb(240, 240, 240);
 }
 QTableView::item:hover {
     background-color :  rgba(31, 31, 31, 70);
+	color: rgb(240, 240, 240);
+}
+QTableView::item:focus {
+    border: transparent;
 }
 QHeaderView::section {
     background-color: rgb(50, 98, 124);
@@ -259,14 +271,21 @@ QHeaderView {
 	background-color: transparent;
 }
 QLineEdit {
-	 background-color :  rgba(31, 31, 31, 0);
-}</string>
+	 background-color :  transparent;
+}
+</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
    </property>
+   <property name="tabKeyNavigation">
+    <bool>false</bool>
+   </property>
    <property name="selectionMode">
     <enum>QAbstractItemView::ExtendedSelection</enum>
+   </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideRight</enum>
    </property>
    <property name="showGrid">
     <bool>true</bool>

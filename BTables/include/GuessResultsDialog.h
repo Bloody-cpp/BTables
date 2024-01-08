@@ -1,5 +1,6 @@
 #pragma once
 #include <Include.h>
+#include <ui_guessResultsDialog.h>
 
 namespace BTables
 {
@@ -21,10 +22,14 @@ namespace BTables
 	{
 		Q_OBJECT
 
+		Ui::GuessResultsDialog m_dialog;
 	public:
-		explicit GuessResultsDialog(QWidget* parent);
-
+		explicit GuessResultsDialog(QWidget* parent = nullptr);
+		void showResults(const GuessResults results);
+		void terminate();
 		~GuessResultsDialog();
+	public slots:
+		void on_continueButton_pressed();
 	};
 
 }

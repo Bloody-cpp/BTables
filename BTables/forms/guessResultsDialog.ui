@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>532</width>
-    <height>391</height>
+    <width>411</width>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Results</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget#GuessResultsDialog
@@ -19,6 +19,137 @@
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(3, 252, 202, 255), stop:1 rgba(137, 54, 214, 255));
 }</string>
   </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>50</y>
+     <width>250</width>
+     <height>250</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame#frame
+{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(2, 177, 139, 255), stop:1 rgba(110, 43, 172, 255));
+	border-radius: 10px
+}
+QLabel {
+	border-radius: 4px;
+	background-color: rgb(31, 31, 31);
+	border: 1px solid rgb(31, 31, 31);
+	color: rgb(240, 240, 240);
+}
+QPushButton
+{
+	border-radius: 5px;
+	background-color: rgb(31, 31, 31);
+	color: rgb(240, 240, 240);
+	border: 1px solid rgb(31, 31, 31);
+}
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="typeTrueAnswers">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>100</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(35, 200, 6)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="totalErrorsLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Total errors:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="typeTotalErros">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>50</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(173, 0, 0)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="trueAnswersLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>True answers:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="totalAnswersLabel">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>171</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+	border-radius: 4px;
+	background-color: rgb(31, 31, 31);
+	border: 1px solid rgb(31, 31, 31);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="continueButton">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>170</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Continue</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>
