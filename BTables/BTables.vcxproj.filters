@@ -48,7 +48,7 @@
     <ClCompile Include="src\GuessResultsDialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TableItem.cpp">
+    <ClCompile Include="src\TableItemDelegate.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,7 +79,7 @@
     <QtMoc Include="include\GuessResultsDialog.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\TableItem.h">
+    <QtMoc Include="include\TableItemDelegate.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
   </ItemGroup>
