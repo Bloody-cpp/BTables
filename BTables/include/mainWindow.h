@@ -6,6 +6,7 @@
 #include <GuessResultsDialog.h>
 #include <DataBase.h>
 #include <Debug.h>
+#include <TableItem.h>
 
 // In future:
 // 1. Add table with delete tables and posibility to recovery
@@ -16,6 +17,8 @@
 // 4. Add feature to import/export tables to excel
 // 5. Using json to save data of table
 // 6. Make full frameless window with resize feature
+
+// 7. make key combination ctrl + z to recovery removed fields and tables
 
 namespace BTables
 {
@@ -47,6 +50,7 @@ namespace BTables
 		void mousePressEvent(QMouseEvent* event) override;
 		void mouseMoveEvent(QMouseEvent* event) override;
 		void mouseReleaseEvent(QMouseEvent* event) override;
+		void keyPressEvent(QKeyEvent* event) override;
 	private:
 		bool isAnyTableExists();
 		QString getCurrentTableName();
@@ -59,7 +63,9 @@ namespace BTables
 		GuessResults makeResults(const QVector<TableRow> currentTableState);
 		void forbidChangeItem(QTableWidgetItem* item);
 		void accessChangeItem(QTableWidgetItem* item);
+		void setSelectionIn(const size_t row, const size_t column);
 		bool eventFilter(QObject* object, QEvent* event);
+		QTableWidgetItem* getCurrentItem();
 	public slots:
 		//Dialog end slots
 		void on_createTableConfirm();

@@ -192,8 +192,10 @@
     <ClCompile Include="src\DataBase.cpp" />
     <ClCompile Include="src\MainWindow.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\TableItem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="include\TableItem.h" />
     <QtMoc Include="include\SetColumnsDialog.h" />
     <QtMoc Include="include\DataBase.h" />
     <QtMoc Include="include\Debug.h" />

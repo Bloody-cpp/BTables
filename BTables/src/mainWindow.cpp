@@ -17,6 +17,7 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	connect(m_setColumnsDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_setColumnsConfirm()));
 	
 	m_mainForm.setupUi(this);
+	m_mainForm.currentTable->setItemDelegate(new TableItemDelegate(this));
 
 	updateTablesList();
 	loadFirstExistsTable();
@@ -145,9 +146,27 @@ void BTables::MainWindow::accessChangeItem(QTableWidgetItem* item)
 	item->setFlags(item->flags() | Qt::ItemIsEditable);
 	item->setFlags(item->flags() | Qt::ItemIsSelectable);
 }
+void BTables::MainWindow::setSelectionIn(const size_t row, const size_t column)
+{
+	QModelIndex index = m_mainForm.currentTable->model()->index(row, column);
+	m_mainForm.currentTable->selectionModel()->select(index, QItemSelectionModel::ClearAndSelect);
+}
 bool BTables::MainWindow::eventFilter(QObject* object, QEvent* event)
 {
 	return false;
+}
+QTableWidgetItem* BTables::MainWindow::getCurrentItem()
+{
+	if (isAnyTableExists())
+	{
+		auto selectedItems = m_mainForm.currentTable->selectedItems();
+		if (selectedItems.size() == 0)
+		{
+			return nullptr;
+		}
+		return selectedItems[0];
+	}
+	return nullptr;
 }
 void BTables::MainWindow::mousePressEvent(QMouseEvent* event)
 {
@@ -173,6 +192,17 @@ void BTables::MainWindow::mouseReleaseEvent(QMouseEvent* event)
 	m_dragPosition = kInvalidPoint;
 	QWidget::mouseReleaseEvent(event);
 }
+void BTables::MainWindow::keyPressEvent(QKeyEvent* event)
+{
+	if (event->key() == Qt::Key::Key_Delete)
+	{
+		if (isAnyTableExists())
+		{
+			on_removeFieldButton_clicked();
+		}
+		return;
+	}
+}
 void BTables::MainWindow::on_setColumnsConfirm()
 {
 	m_db->setColumns(getCurrentTableName(), m_setColumnsDialog.getNumberColumns());
@@ -190,7 +220,6 @@ void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 }
 void BTables::MainWindow::on_currentTable_itemClicked(QTableWidgetItem* item)
 {
-	
 }
 void BTables::MainWindow::on_availableTables_itemClicked(QListWidgetItem* item)
 {
@@ -286,14 +315,17 @@ void BTables::MainWindow::on_removeFieldButton_clicked()
 {
 	if (isAnyTableExists() && m_mainForm.currentTable->rowCount() > 1)
 	{
-		const size_t currentRow = m_mainForm.currentTable->currentRow();
-		if (currentRow == SIZE_MAX)
+		auto selectedItem = getCurrentItem();
+		if (selectedItem == nullptr)
 		{
 			warnMessage("Any row wasn`t select");
 			return;
 		}
-		m_db->removeField(getCurrentTableName(), currentRow);
+		const size_t row = selectedItem->row();
+		const size_t column = selectedItem->column();
+		m_db->removeField(getCurrentTableName(), row);
 		loadTable(getCurrentTableName());
+		setSelectionIn(row - 1, column);
 		infoMessage("Succeful remove field");
 	}
 }

@@ -14,7 +14,7 @@
    <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="focusPolicy">
-   <enum>Qt::StrongFocus</enum>
+   <enum>Qt::ClickFocus</enum>
   </property>
   <property name="windowTitle">
    <string>Bloody Tables</string>
@@ -236,31 +236,35 @@ QPushButton
     </rect>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+    <enum>Qt::ClickFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">QTableView {
 	background-color: rgba(31, 31, 31, 120);
-	color: rgb(240, 240, 240);
+	selection-background-color: rgba(31, 31, 31, 120);
+	font: 700 9pt &quot;Segoe UI&quot;;
+	color: rgb(220, 220, 220);
 	border-color: transparent;
-	background-selection-color : rgba(31, 31, 31, 90);
+	outline: none;
 }
 QTableView::item:selected {
     background-color :  rgba(31, 31, 31, 100);
- 	background-selection-color : rgba(31, 31, 31, 90);
-	color: rgb(240, 240, 240);
+	selection-background-color: rgba(31, 31, 31, 100);
+	color: rgb(220, 220, 220);
 }
 QTableView::item:selected:hover {
     background-color :  rgba(31, 31, 31, 100);
- 	background-selection-color : rgba(31, 31, 31, 90);
-	color: rgb(240, 240, 240);
+	selection-background-color: rgba(31, 31, 31, 100);
+	color: rgb(220, 220, 220);
 }
 QTableView::item:hover {
     background-color :  rgba(31, 31, 31, 70);
-	color: rgb(240, 240, 240);
+	color: rgb(220, 220, 220);
 }
 QTableView::item:focus {
-    border: transparent;
+	background-color :  rgba(31, 31, 31, 100);
+	selection-background-color: rgba(31, 31, 31, 100);
+	color: rgb(220, 220, 220);
 }
 QHeaderView::section {
     background-color: rgb(50, 98, 124);
@@ -271,7 +275,9 @@ QHeaderView {
 	background-color: transparent;
 }
 QLineEdit {
-	 background-color :  transparent;
+	 background-color :  qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(3, 252, 202, 255), stop:1 rgba(137, 54, 214, 255));; 
+	color: rgb(40, 40, 40);
+	border: none;
 }
 </string>
    </property>
@@ -282,7 +288,7 @@ QLineEdit {
     <bool>false</bool>
    </property>
    <property name="selectionMode">
-    <enum>QAbstractItemView::ExtendedSelection</enum>
+    <enum>QAbstractItemView::SingleSelection</enum>
    </property>
    <property name="textElideMode">
     <enum>Qt::ElideRight</enum>
