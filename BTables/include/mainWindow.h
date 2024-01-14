@@ -6,7 +6,7 @@
 #include <GuessResultsDialog.h>
 #include <DataBase.h>
 #include <Debug.h>
-#include <TableItem.h>
+#include <TableItemDelegate.h>
 
 // In future:
 // 1. Add table with delete tables and posibility to recovery
