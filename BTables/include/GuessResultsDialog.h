@@ -4,13 +4,6 @@
 
 namespace BTables
 {
-	struct TableCoord
-	{
-		TableCoord(size_t x, size_t y) : m_x(x), m_y(y) {}
-		size_t m_x;
-		size_t m_y;
-	};
-
 	struct GuessResults
 	{
 		size_t totalAnswers = 0;

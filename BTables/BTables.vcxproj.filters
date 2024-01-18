@@ -51,12 +51,21 @@
     <ClCompile Include="src\TableItemDelegate.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\UndoCommands.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Include.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="include\DataParser.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TypeDefs.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UndoCommands.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

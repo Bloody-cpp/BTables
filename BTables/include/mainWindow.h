@@ -7,6 +7,7 @@
 #include <DataBase.h>
 #include <Debug.h>
 #include <TableItemDelegate.h>
+#include <UndoCommands.h>
 
 // In future:
 // 1. Add table with delete tables and posibility to recovery
@@ -18,7 +19,7 @@
 // 5. Using json to save data of table
 // 6. Make full frameless window with resize feature
 
-// 7. make key combination ctrl + z to recovery removed fields and tables
+// 7. -> make key combination ctrl + z to recovery removed fields and tables
 
 namespace BTables
 {
@@ -40,12 +41,16 @@ namespace BTables
 		SetColumnsDialog m_setColumnsDialog;
 		GuessResultsDialog m_guessResultsDialog;
 		DebugWindow* m_debugWindow;
+		GuessState m_windowState = MainMenu;
+
 		DataBase* m_db;
 		QPoint m_dragPosition;
-		GuessState m_windowState = MainMenu;
+		QUndoStack* m_undoStack;
 	public:
 		MainWindow(QWidget* parent = nullptr);
 		~MainWindow() {}
+
+		friend class DeleteTableCommand;
 	protected:
 		void mousePressEvent(QMouseEvent* event) override;
 		void mouseMoveEvent(QMouseEvent* event) override;

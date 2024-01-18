@@ -1,6 +1,6 @@
 #include "DataParser.h"
 
-QString BTables::addToSerialize(const QString data, const QVector<QString> addData)
+QString BTables::addToSerialize(const QString data, const TableRow addData)
 {
 	if (data.isEmpty())
 	{
@@ -12,7 +12,7 @@ QString BTables::addToSerialize(const QString data, const QVector<QString> addDa
 	}
 }
 
-QString BTables::serialize(const QVector<QVector<QString>> data)
+QString BTables::serialize(const BTables::TableData data)
 {
 	QVector<QString> buffer;
 	for (size_t x = 0; x < data.size(); x++)
@@ -22,7 +22,7 @@ QString BTables::serialize(const QVector<QVector<QString>> data)
 	return buffer.join(';');
 }
 
-QVector<QVector<QString>> BTables::parseData(const QString data)
+BTables::TableData BTables::parseData(const QString data)
 {
 	QVector<QVector<QString>> buffer;
 	QVector<QString> splitRows = data.split(';');

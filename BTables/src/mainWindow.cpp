@@ -12,6 +12,8 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	m_db = new DataBase(this);
 	m_db->connect();
 
+	m_undoStack = new QUndoStack(this);
+
 	//Connecting all slots
 	connect(m_createTableDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_createTableConfirm()));
 	connect(m_setColumnsDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_setColumnsConfirm()));
@@ -30,7 +32,7 @@ void BTables::MainWindow::loadTable(const QString tableName)
 {
 	m_mainForm.currentTable->blockSignals(true);
 	m_mainForm.currentTable->clear();
-	QVector<TableRow> dataOfTable = m_db->getDataOfTable(tableName);
+	QVector<TableRow> dataOfTable = m_db->getParseTableData(tableName);
 	m_mainForm.currentTable->setRowCount(dataOfTable.size());
 	m_mainForm.currentTable->setColumnCount(m_db->getColumns(tableName));
 	for (size_t rows = 0; rows < dataOfTable.size(); rows++)
@@ -103,17 +105,17 @@ size_t BTables::MainWindow::searchRowByFirstValue(const QVector<TableRow> rows, 
 }
 BTables::GuessResults BTables::MainWindow::makeResults(const QVector<TableRow> currentTableState)
 {
-	QVector<TableRow> startValues = m_db->getDataOfTable(getCurrentTableName());
+	TableData startValues = m_db->getParseTableData(getCurrentTableName());
 	GuessResults results;
 	for (size_t x = 0; x < startValues.size(); x++)
 	{
-		const size_t index = searchRowByFirstValue(currentTableState, startValues[x][0]);
+		const TableX index = searchRowByFirstValue(currentTableState, startValues[x][0]);
 		TableRow currentRow = currentTableState[index];
 		bool wasErrorInRow = false;
 		if (!startValues[x][0].isEmpty())
 		{
 			results.totalAnswers++;
-			for (size_t y = 0; y < currentRow.size(); y++)
+			for (TableY y = 0; y < currentRow.size(); y++)
 			{
 				if (startValues[x][y] != currentRow[y])
 				{
@@ -128,7 +130,7 @@ BTables::GuessResults BTables::MainWindow::makeResults(const QVector<TableRow> c
 		}
 		else
 		{
-			for (size_t y = 0; y < startValues[x].size(); y++)
+			for (TableY y = 0; y < startValues[x].size(); y++)
 			{
 				results.errorPlaces.push_back({ y, index });
 			}
@@ -194,6 +196,18 @@ void BTables::MainWindow::mouseReleaseEvent(QMouseEvent* event)
 }
 void BTables::MainWindow::keyPressEvent(QKeyEvent* event)
 {
+	QKeySequence key_sequence{ static_cast<int>(event->modifiers()) + event->key() };
+	if (key_sequence == QKeySequence::Undo)
+	{
+		m_undoStack->undo(); // nothing in the stack
+		return;
+	}
+	else if (key_sequence == QKeySequence::Redo)
+	{
+		m_undoStack->redo(); // nothing in the stack
+		return;
+	}
+
 	if (event->key() == Qt::Key::Key_Delete)
 	{
 		if (isAnyTableExists())
@@ -245,11 +259,8 @@ void BTables::MainWindow::on_createTableConfirm()
 		m_db->createTable(m_createTableDialog.getTableName(), m_createTableDialog.getNumberColumns());
 		m_createTableDialog.done(0);
 		updateTablesList();
-		if (m_db->tables().size() == 1)
-		{
-			m_mainForm.availableTables->setCurrentRow(0);
-			loadTable(m_createTableDialog.getTableName());
-		}
+		m_mainForm.availableTables->setCurrentRow(tables.size());
+		loadTable(m_createTableDialog.getTableName());
 		infoMessage("New table was create");
 		return;
 	}
@@ -297,18 +308,7 @@ void BTables::MainWindow::on_deleteTableButton_clicked()
 {
 	if (isAnyTableExists())
 	{
-		m_db->removeTable(getCurrentTableName());
-		updateTablesList();
-		if (isAnyTableExists())
-		{
-			loadFirstExistsTable();
-		}
-		else
-		{
-			m_mainForm.currentTable->setRowCount(0);
-			m_mainForm.currentTable->setColumnCount(0);
-			m_mainForm.currentTable->clear();
-		}
+		m_undoStack->push(new DeleteTableCommand(this, getCurrentTableName()));
 	}
 }
 void BTables::MainWindow::on_removeFieldButton_clicked()
@@ -323,6 +323,12 @@ void BTables::MainWindow::on_removeFieldButton_clicked()
 		}
 		const size_t row = selectedItem->row();
 		const size_t column = selectedItem->column();
+
+		//Register action with field
+		TableRow currentRow = m_db->getTableRow(getCurrentTableName(), row);
+		
+
+		//Remove field
 		m_db->removeField(getCurrentTableName(), row);
 		loadTable(getCurrentTableName());
 		setSelectionIn(row - 1, column);
@@ -341,7 +347,7 @@ void BTables::MainWindow::on_viewButton_clicked()
 
 			const size_t iColumns = m_mainForm.currentTable->columnCount();
 			const size_t iRows = m_mainForm.currentTable->rowCount();
-			QVector<TableRow> tableData = m_db->getDataOfTable(getCurrentTableName());
+			TableData tableData = m_db->getParseTableData(getCurrentTableName());
 			m_mainForm.currentTable->blockSignals(true);
 
 			// 1. Clear all items except first column
@@ -356,7 +362,7 @@ void BTables::MainWindow::on_viewButton_clicked()
 			}
 
 			// 2. First column must editable and with mixed data
-			QVector<QString> mixedData;
+			QStringList mixedData;
 			for (size_t x = 0; x < iRows; x++)
 			{
 				mixedData.push_back(tableData[x][0]);

@@ -27,23 +27,36 @@ QStringList BTables::DataBase::tables()
     QStringList list;
     QSqlQuery* query = new QSqlQuery(m_db);
     query->prepare("SELECT tableName FROM tables");
-    sqlMessage(query, "Call db.tables");
+    query->exec();
     while (query->next())
     {
         list.push_back(query->value(0).toString());
     }
     return list;
 }
-QVector<QVector<QString>> BTables::DataBase::getDataOfTable(const QString tableName)
+BTables::TableData BTables::DataBase::getParseTableData(const QString tableName)
 {
     if (hasTable(tableName))
     {
-        return parseData(getDataFromTable(tableName));
+        return parseData(getSerializeTableData(tableName));
     }
     else
     {
-        return QVector<QVector<QString>>();
+        return TableData();
     }
+}
+BTables::TableRow BTables::DataBase::getTableRow(const QString tableName, const TableY coord)
+{
+    if (hasTable(tableName))
+    {
+        TableData tableData = getParseTableData(tableName);
+        if (tableData.isEmpty() || tableData.size() - 1 < coord)
+        {
+            return TableRow();
+        }
+        return tableData[coord];
+    }
+    return TableRow();
 }
 int BTables::DataBase::getColumns(const QString tableName)
 {
@@ -78,20 +91,20 @@ void BTables::DataBase::renameTable(const QString oldName, const QString newName
         sqlMessage(query, "Call db.renameTable");
     }
 }
-void BTables::DataBase::addNewField(const QString tableName, QVector<QString> fieldData)
+void BTables::DataBase::addNewField(const QString tableName, TableRow rowData)
 {
-    if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
+    if (hasTable(tableName) && correctColumnsNumber(rowData, tableName))
     {
-        QString newData = addToSerialize(getDataFromTable(tableName), fieldData);
+        QString newData = addToSerialize(getSerializeTableData(tableName), rowData);
         updateDataOfTable(tableName, newData);
     }
 }
-void BTables::DataBase::updateField(const QString tableName, QVector<QString> fieldData)
+void BTables::DataBase::updateField(const QString tableName, TableRow fieldData)
 {
     if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
     {
-        QVector<QVector<QString>> decode = parseData(getDataFromTable(tableName));
-        QVector<QString>& needRow = decode[searchIndexOfRow(decode, fieldData)];
+        TableData decode = parseData(getSerializeTableData(tableName));
+        TableRow& needRow = decode[searchIndexOfRow(decode, fieldData)];
         for (size_t x = 0; x < fieldData.size(); x++)
         {
             if (fieldData[x].size() != 0)
@@ -108,7 +121,7 @@ void BTables::DataBase::setColumns(const QString tableName, const short newNumbe
 {
     if (hasTable(tableName))
     {
-        QVector<TableRow> dataOfTable = parseData(getDataFromTable(tableName));
+        TableData dataOfTable = parseData(getSerializeTableData(tableName));
         const short currentNumberColumns = getColumns(tableName);
         if (currentNumberColumns == newNumberColumns)
         {
@@ -149,7 +162,7 @@ void BTables::DataBase::removeField(const QString tableName, const size_t yCoord
 {
     if (hasTable(tableName))
     {
-        QVector<QVector<QString>> decode = getDataOfTable(tableName);
+        TableData decode = getParseTableData(tableName);
         decode.erase(decode.begin() + yCoord);
         QString serializedResult = serialize(decode);
         infoMessage("db.removeField.serialized: " + serializedResult);
@@ -166,31 +179,25 @@ void BTables::DataBase::removeTable(const QString tableName)
         sqlMessage(query, "db.removeTable");
     }
 }
-BTables::DataBase::~DataBase()
-{
-    m_db.close();
-}
 void BTables::DataBase::updateAt(const QString tableName, int x, int y, const QString value)
 {
     if (hasTable(tableName))
     {
-        QVector<TableRow> decode = parseData(getDataFromTable(tableName));
+        TableData decode = parseData(getSerializeTableData(tableName));
         decode[y][x] = value;
         QString serializedResult = serialize(decode);
         infoMessage("db.updateAt.serialized: " + serializedResult);
         updateDataOfTable(tableName, serializedResult);
     }
 }
-QString BTables::DataBase::getDataFromTable(const QString tableName)
+QString BTables::DataBase::getSerializeTableData(const QString tableName)
 {
     QSqlQuery* query = new QSqlQuery(m_db);
     query->prepare("SELECT data FROM tables WHERE tableName = :tableName");
     query->bindValue(":tableName", tableName);
     sqlMessage(query, "Call db.getDataFromTable");
     query->next();
-    QString result = query->value(0).toString();
-    infoMessage("Result of call: " + result);
-    return result;
+    return query->value(0).toString();
 }
 void BTables::DataBase::updateDataOfTable(const QString tableName, const QString newData)
 {
@@ -203,7 +210,7 @@ void BTables::DataBase::updateDataOfTable(const QString tableName, const QString
         sqlMessage(query, "Call db.updateDataOfTable");
     }
 }
-size_t BTables::DataBase::searchIndexOfRow(QVector<QVector<QString>> decode, QVector<QString> row)
+size_t BTables::DataBase::searchIndexOfRow(TableData decode, TableRow row)
 {
     for (size_t x = 0; x < decode.size(); x++)
     {
@@ -228,16 +235,20 @@ bool BTables::DataBase::hasTable(const QString tableName)
     }
     return 1;
 }
-bool BTables::DataBase::correctColumnsNumber(QVector<QString> fieldData, QString tableName)
+bool BTables::DataBase::correctColumnsNumber(TableRow rowData, QString tableName)
 {
     QSqlQuery* query = new QSqlQuery(m_db);
     query->prepare("SELECT columns FROM tables WHERE tableName = :tableName");
     query->bindValue(":tableName", tableName);
     query->exec();
     query->next();
-    if (fieldData.size() == query->value(0).toInt())
+    if (rowData.size() == query->value(0).toInt())
     {
         return true;
     }
     return false;
+}
+BTables::DataBase::~DataBase()
+{
+    m_db.close();
 }
