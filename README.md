@@ -1,1 +1,4 @@
-build with qt6 and msvc 2022
+### Bloody Tables
+* This project was created for learning languages ​​and translating words
+* **IDE: Visual Studio 2022**
+* C++/**Qt6**
