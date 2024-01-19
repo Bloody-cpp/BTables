@@ -71,6 +71,19 @@ int BTables::DataBase::getColumns(const QString tableName)
     }
     return 0;
 }
+void BTables::DataBase::insertTableRow(const QString tableName, TableRow row, TableY coord)
+{
+    if (hasTable(tableName))
+    {
+        TableData tableData = getParseTableData(tableName);
+        if (tableData.isEmpty() || tableData.size() - 1 < coord)
+        {
+            return;
+        }
+        tableData.insert(tableData.begin() + coord, row);
+        updateDataOfTable(tableName, serialize(tableData));
+    }
+}
 void BTables::DataBase::createTable(const QString tableName, short numberColumns)
 {
     QSqlQuery* query = new QSqlQuery(m_db);
@@ -97,24 +110,6 @@ void BTables::DataBase::addNewField(const QString tableName, TableRow rowData)
     {
         QString newData = addToSerialize(getSerializeTableData(tableName), rowData);
         updateDataOfTable(tableName, newData);
-    }
-}
-void BTables::DataBase::updateField(const QString tableName, TableRow fieldData)
-{
-    if (hasTable(tableName) && correctColumnsNumber(fieldData, tableName))
-    {
-        TableData decode = parseData(getSerializeTableData(tableName));
-        TableRow& needRow = decode[searchIndexOfRow(decode, fieldData)];
-        for (size_t x = 0; x < fieldData.size(); x++)
-        {
-            if (fieldData[x].size() != 0)
-            {
-                needRow[x] = fieldData[x];
-            }
-        }
-        QString serializedResult = serialize(decode);
-        infoMessage("db.updateField.serialized: " + serializedResult);
-        updateDataOfTable(tableName, serializedResult);
     }
 }
 void BTables::DataBase::setColumns(const QString tableName, const short newNumberColumns)

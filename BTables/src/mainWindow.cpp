@@ -19,7 +19,8 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	connect(m_setColumnsDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_setColumnsConfirm()));
 	
 	m_mainForm.setupUi(this);
-	m_mainForm.currentTable->setItemDelegate(new TableItemDelegate(this));
+	m_delegate = new TableItemDelegate(this);
+	m_mainForm.currentTable->setItemDelegate(m_delegate);
 
 	updateTablesList();
 	loadFirstExistsTable();
@@ -229,7 +230,7 @@ void BTables::MainWindow::on_currentTable_itemChanged(QTableWidgetItem* item)
 	{
 		infoMessage("Changes at: x:" + QString::number(item->column()) + " y: " + QString::number(item->row()));
 		infoMessage("Value: " + item->text());
-		m_db->updateAt(getCurrentTableName(), item->column(), item->row(), item->text());
+		m_undoStack->push(new EditCellCommand(this, TableCoord(item->column(), item->row()), item->text(), m_delegate->getOldValue()));
 	}
 }
 void BTables::MainWindow::on_currentTable_itemClicked(QTableWidgetItem* item)
@@ -284,19 +285,7 @@ void BTables::MainWindow::on_addFieldButton_clicked()
 	if (isAnyTableExists())
 	{
 		infoMessage("Start of creating new field");
-		TableRow row;
-		const size_t columnsCount = m_db->getColumns(getCurrentTableName());
-		m_mainForm.currentTable->blockSignals(true);
-		m_mainForm.currentTable->insertRow(m_mainForm.currentTable->rowCount());
-		for (size_t x = 0; x < columnsCount; x++)
-		{
-			QTableWidgetItem* item = new QTableWidgetItem();
-			item->setData(Qt::EditRole, "");
-			row.push_back("");
-			m_mainForm.currentTable->setItem(m_mainForm.currentTable->rowCount() - 1, x, item);
-		}
-		m_mainForm.currentTable->blockSignals(false);
-		m_db->addNewField(getCurrentTableName(), row);
+		m_undoStack->push(new FieldCreateCommand(this));
 	}
 }
 void BTables::MainWindow::on_closeButton_clicked()
@@ -321,16 +310,11 @@ void BTables::MainWindow::on_removeFieldButton_clicked()
 			warnMessage("Any row wasn`t select");
 			return;
 		}
+		
 		const size_t row = selectedItem->row();
 		const size_t column = selectedItem->column();
 
-		//Register action with field
-		TableRow currentRow = m_db->getTableRow(getCurrentTableName(), row);
-		
-
-		//Remove field
-		m_db->removeField(getCurrentTableName(), row);
-		loadTable(getCurrentTableName());
+		m_undoStack->push(new DeleteFieldCommand(this, row));
 		setSelectionIn(row - 1, column);
 		infoMessage("Succeful remove field");
 	}

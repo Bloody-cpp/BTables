@@ -43,6 +43,7 @@ namespace BTables
 		DebugWindow* m_debugWindow;
 		GuessState m_windowState = MainMenu;
 
+		TableItemDelegate* m_delegate;
 		DataBase* m_db;
 		QPoint m_dragPosition;
 		QUndoStack* m_undoStack;
@@ -51,6 +52,9 @@ namespace BTables
 		~MainWindow() {}
 
 		friend class DeleteTableCommand;
+		friend class DeleteFieldCommand;
+		friend class EditCellCommand;
+		friend class FieldCreateCommand;
 	protected:
 		void mousePressEvent(QMouseEvent* event) override;
 		void mouseMoveEvent(QMouseEvent* event) override;

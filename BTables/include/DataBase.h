@@ -18,10 +18,10 @@ namespace BTables
 		TableRow getTableRow(const QString tableName, const TableY coord);
 		QString getSerializeTableData(const QString tableName);
 		int getColumns(const QString tableName);
+		void insertTableRow(const QString tableName, TableRow row, TableY coord);
 		void createTable(const QString tableName, const short numberColumns);
 		void renameTable(const QString oldName, const QString newName);
 		void addNewField(const QString tableName, TableRow rowData);
-		void updateField(const QString tableName, TableRow rowData);
 		void updateAt(const QString tableName, int x, int y, const QString value);
 		void setColumns(const QString tableName, const short numbeColumns);
 		void removeField(const QString tableName, const size_t row);
