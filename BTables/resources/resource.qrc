@@ -2,5 +2,7 @@
     <qresource prefix="/resources">
         <file>files/close.png</file>
         <file>files/closeHover.png</file>
+        <file>files/settings.png</file>
+        <file>files/settingsHover.png</file>
     </qresource>
 </RCC>

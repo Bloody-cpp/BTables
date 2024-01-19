@@ -80,10 +80,10 @@ QPushButton:hover
    <widget class="QPushButton" name="closeButton">
     <property name="geometry">
      <rect>
-      <x>1178</x>
-      <y>3</y>
-      <width>19</width>
-      <height>19</height>
+      <x>1175</x>
+      <y>0</y>
+      <width>25</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -99,6 +99,114 @@ QPushButton:hover
     <property name="icon">
      <iconset resource="../resources/resource.qrc">
       <normaloff>:/resources/files/close.png</normaloff>:/resources/files/close.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>256</x>
+      <y>1</y>
+      <width>721</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="historyButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	border-radius: 5px;
+	background-color: rgb(31, 31, 31);
+	color: rgb(240, 240, 240);
+	border: 1px solid rgb(31, 31, 31);
+}
+QPushButton:hover
+{
+	background-color: rgb(58, 58, 58);
+	border: 1px solid rgb(58, 58, 58);
+}</string>
+       </property>
+       <property name="text">
+        <string>History</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="importButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	border-radius: 5px;
+	background-color: rgb(31, 31, 31);
+	color: rgb(240, 240, 240);
+	border: 1px solid rgb(31, 31, 31);
+}
+QPushButton:hover
+{
+	background-color: rgb(58, 58, 58);
+	border: 1px solid rgb(58, 58, 58);
+}</string>
+       </property>
+       <property name="text">
+        <string>Import</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exportButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	border-radius: 5px;
+	background-color: rgb(31, 31, 31);
+	color: rgb(240, 240, 240);
+	border: 1px solid rgb(31, 31, 31);
+}
+QPushButton:hover
+{
+	background-color: rgb(58, 58, 58);
+	border: 1px solid rgb(58, 58, 58);
+}</string>
+       </property>
+       <property name="text">
+        <string>Export</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="settingsButton">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:hover
+{
+	border-image: url(:/resources/files/settingsHover.png);
+    background-repeat: no-repeat;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../resources/resource.qrc">
+      <normaloff>:/resources/files/settings.png</normaloff>:/resources/files/settings.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -132,6 +240,11 @@ QPushButton
 	background-color: rgb(31, 31, 31);
 	color: rgb(240, 240, 240);
 	border: 1px solid rgb(31, 31, 31);
+}
+QPushButton:hover
+{
+	background-color: rgba(58, 58, 58, 150);
+	border: 1px solid rgba(58, 58, 58, 150);
 }
 </string>
    </property>

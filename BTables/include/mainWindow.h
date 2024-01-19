@@ -21,6 +21,10 @@
 
 // 7. -> make key combination ctrl + z to recovery removed fields and tables
 
+// remove all buttons in right to hotkeys
+// modify create new field to don`t save row which wasn`t have value
+// change color of first column
+
 namespace BTables
 {
 	constexpr QPoint kInvalidPoint(-1, -1);
