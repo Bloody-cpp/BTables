@@ -1,10 +1,10 @@
 <FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" FontFamily="Segoe UI" FontSize="12">
   <FlowDocument.Tag><![CDATA[{
-  "timestamp": "2023-11-11 20:51:54",
+  "timestamp": "2024-01-27 01:28:20",
   "files": {
     "C:\\Data\\C++\\visual studio 2022 projects\\BTables\\BTables\\BTables.vcxproj": {
-      "before": "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",
-      "after": "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"
+      "before": "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",
+      "after": "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"
     }
   }
 }]]></FlowDocument.Tag>
@@ -17,7 +17,7 @@
       <Span TextDecorations="Underline">Project Format Conversion</Span>
     </Paragraph>
     <Paragraph Margin="12,8" FontSize="18">
-      <Span>Report generated on 2023-11-11 20:51:54</Span>
+      <Span>Report generated on 2024-01-27 01:28:20</Span>
     </Paragraph>
   </Section>
   <Section>
@@ -67,27 +67,12 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtCore]]></Span><Span><![CDATA[;release;/include;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
+              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtWidgets]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtSql]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtCore]]></Span><Span><![CDATA[;release;/include;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtCore]]></Span><Span><![CDATA[;release;/include;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
-            </Paragraph>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
-        </TableRow>
-        <TableRow>
-          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
-            <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      ]]></Span><Span Background="LightCoral"><![CDATA[<AdditionalDependencies>C:\DATA\C++\QT\6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[6.0\MSVC2019_64\lib\Qt6Gui.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[6.0\MSVC2019_64\lib\Qt6Core.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6EntryPoint]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
-            </Paragraph>
-          </TableCell>
-          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
-            <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      ]]></Span><Span Background="LightGreen"><![CDATA[<AdditionalDependencies>$(QTDIR)\lib\Qt6Gui]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Core]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6EntryPoint]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
+              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtWidgets]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtSql]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtCore]]></Span><Span><![CDATA[;release;/include;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
             </Paragraph>
           </TableCell>
         </TableRow>
@@ -97,12 +82,12 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtCore]]></Span><Span><![CDATA[;debug;/include;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
+              <Span><![CDATA[      ]]></Span><Span Background="LightCoral"><![CDATA[<AdditionalDependencies>C:\DATA\C++\QT\6.6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[0\MSVC2019_64\lib\Qt6Widgets.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6Gui]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[6.0\MSVC2019_64\lib\Qt6Sql.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6Core]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6EntryPoint]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtCore]]></Span><Span><![CDATA[;debug;/include;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
+              <Span><![CDATA[      ]]></Span><Span Background="LightGreen"><![CDATA[<AdditionalDependencies>$(QTDIR)\lib\Qt6Widgets]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Gui]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Sql]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Core]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6EntryPoint]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
             </Paragraph>
           </TableCell>
         </TableRow>
@@ -112,12 +97,27 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      ]]></Span><Span Background="LightCoral"><![CDATA[<AdditionalDependencies>C:\DATA\C++\QT\6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[6.0\MSVC2019_64\lib\Qt6Guid.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[6.0\MSVC2019_64\lib\Qt6Cored.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6EntryPointd]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
+              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtWidgets]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtSql]]></Span><Span><![CDATA[;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\include\QtCore]]></Span><Span><![CDATA[;debug;/include;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      ]]></Span><Span Background="LightGreen"><![CDATA[<AdditionalDependencies>$(QTDIR)\lib\Qt6Guid]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Cored]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6EntryPointd]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
+              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtWidgets]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtGui]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtSql]]></Span><Span><![CDATA[;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\include\QtCore]]></Span><Span><![CDATA[;debug;/include;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span><![CDATA[      ]]></Span><Span Background="LightCoral"><![CDATA[<AdditionalDependencies>C:\DATA\C++\QT\6.6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[0\MSVC2019_64\lib\Qt6Widgetsd.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6Guid]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6]]></Span><Span><![CDATA[.]]></Span><Span Background="LightCoral"><![CDATA[6.0\MSVC2019_64\lib\Qt6Sqld.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6Cored]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightCoral"><![CDATA[C:\DATA\C++\QT\6.6.0\MSVC2019_64\lib\Qt6EntryPointd]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
+            </Paragraph>
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span><![CDATA[      ]]></Span><Span Background="LightGreen"><![CDATA[<AdditionalDependencies>$(QTDIR)\lib\Qt6Widgetsd]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Guid]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Sqld]]></Span><Span><![CDATA[.]]></Span><Span><![CDATA[lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6Cored]]></Span><Span><![CDATA[.lib;]]></Span><Span Background="LightGreen"><![CDATA[$(QTDIR)\lib\Qt6EntryPointd]]></Span><Span><![CDATA[.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
             </Paragraph>
           </TableCell>
         </TableRow>
@@ -590,7 +590,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;]]></Span><Span Background="LightCoral"><![CDATA[QT_GUI_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
+              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;]]></Span><Span Background="LightCoral"><![CDATA[QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -605,7 +605,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;]]></Span><Span Background="LightCoral"><![CDATA[QT_GUI_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
+              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;]]></Span><Span Background="LightCoral"><![CDATA[QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -638,7 +638,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[$(QTDIR)\include;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;]]></Span><Span><![CDATA[release;/include]]></Span><Span Background="LightCoral"><![CDATA[;$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
+              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtCore;]]></Span><Span><![CDATA[release;/include]]></Span><Span Background="LightCoral"><![CDATA[;$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -653,7 +653,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[$(QTDIR)\include;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtCore;]]></Span><Span><![CDATA[debug;/include]]></Span><Span Background="LightCoral"><![CDATA[;$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
+              <Span><![CDATA[      <AdditionalIncludeDirectories>.;]]></Span><Span Background="LightCoral"><![CDATA[$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtCore;]]></Span><Span><![CDATA[debug;/include]]></Span><Span Background="LightCoral"><![CDATA[;$(QTDIR)\mkspecs\win32-msvc]]></Span><Span><![CDATA[;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -686,7 +686,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalDependencies>$(QTDIR)]]></Span><Span Background="LightCoral"><![CDATA[\lib\Qt6Gui.lib;$(QTDIR)\lib\Qt6Core.lib;$(QTDIR)]]></Span><Span><![CDATA[\lib\Qt6EntryPoint.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
+              <Span><![CDATA[      <AdditionalDependencies>$(QTDIR)]]></Span><Span Background="LightCoral"><![CDATA[\lib\Qt6Widgets.lib;$(QTDIR)\lib\Qt6Gui.lib;$(QTDIR)\lib\Qt6Sql.lib;$(QTDIR)\lib\Qt6Core.lib;$(QTDIR)]]></Span><Span><![CDATA[\lib\Qt6EntryPoint.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -701,7 +701,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <AdditionalDependencies>$(QTDIR)]]></Span><Span Background="LightCoral"><![CDATA[\lib\Qt6Guid.lib;$(QTDIR)\lib\Qt6Cored.lib;$(QTDIR)]]></Span><Span><![CDATA[\lib\Qt6EntryPointd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
+              <Span><![CDATA[      <AdditionalDependencies>$(QTDIR)]]></Span><Span Background="LightCoral"><![CDATA[\lib\Qt6Widgetsd.lib;$(QTDIR)\lib\Qt6Guid.lib;$(QTDIR)\lib\Qt6Sqld.lib;$(QTDIR)\lib\Qt6Cored.lib;$(QTDIR)]]></Span><Span><![CDATA[\lib\Qt6EntryPointd.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -782,7 +782,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;]]></Span><Span Background="LightCoral"><![CDATA[QT_GUI_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
+              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;]]></Span><Span Background="LightCoral"><![CDATA[QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -797,7 +797,7 @@
         <TableRow>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;]]></Span><Span Background="LightCoral"><![CDATA[QT_GUI_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
+              <Span><![CDATA[      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;]]></Span><Span Background="LightCoral"><![CDATA[QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;]]></Span><Span><![CDATA[_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>]]></Span>
             </Paragraph>
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
@@ -833,7 +833,7 @@
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span Background="LightGreen"><![CDATA[    <QtModules>core;gui</QtModules>]]></Span>
+              <Span Background="LightGreen"><![CDATA[    <QtModules>core;sql;gui;widgets</QtModules>]]></Span>
             </Paragraph>
           </TableCell>
         </TableRow>
@@ -846,7 +846,7 @@
           </TableCell>
           <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
             <Paragraph FontFamily="Consolas" Margin="4, 0">
-              <Span Background="LightGreen"><![CDATA[    <QtModules>core;gui</QtModules>]]></Span>
+              <Span Background="LightGreen"><![CDATA[    <QtModules>core;sql;gui;widgets</QtModules>]]></Span>
             </Paragraph>
           </TableCell>
         </TableRow>
@@ -857,4 +857,4 @@
     <Paragraph />
   </Section>
 </FlowDocument>
-<!--/+dKwIVT8t594lvjbNbMaKYn0oxouCjO4DltGXG9uA8=-->
+<!--PNt5Gp6xgMfvy7C0nEcP501TyrLuys+AYR2kOFsNCF8=-->

@@ -13,6 +13,7 @@ BTables::MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 	m_db->connect();
 
 	m_undoStack = new QUndoStack(this);
+	m_excel = new ExcelIO(this);
 
 	//Connecting all slots
 	connect(m_createTableDialog.getUI()->confirmButton, SIGNAL(clicked()), this, SLOT(on_createTableConfirm()));
@@ -430,5 +431,37 @@ void BTables::MainWindow::on_viewButton_clicked()
 			loadTable(getCurrentTableName());
 			return;
 		}
+	}
+}
+
+void BTables::MainWindow::on_importButton_clicked()
+{
+	const QString desktopLocation = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+	QString xlsxFile = QFileDialog::getOpenFileName(this, "Open excel table", desktopLocation, "*.xlsx");
+	if (xlsxFile.isEmpty())
+	{
+		return;
+	}
+	TableData tableData = m_excel->importFile(xlsxFile);
+
+	QFileInfo fInfo(xlsxFile);
+	QString tableName = fInfo.baseName();
+	m_db->createTable(tableName, tableData[0].size());
+	m_db->updateDataOfTable(tableName, serialize(tableData));
+	updateTablesList();
+	loadTable(tableName);
+}
+
+void BTables::MainWindow::on_exportButton_clicked()
+{
+	if (isAnyTableExists())
+	{
+		const QString desktopLocation = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+		QString folder = QFileDialog::getSaveFileName(this, "Open excel table", desktopLocation + "//" + getCurrentTableName() + ".xlsx");
+		if (folder.isEmpty())
+		{
+			return;
+		}
+		m_excel->exportFile(folder, getCurrentTableState());
 	}
 }

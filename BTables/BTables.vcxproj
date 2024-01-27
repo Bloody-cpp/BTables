@@ -41,7 +41,7 @@
   <Import Project="$(QtMsBuild)\qt_defaults.props" Condition="Exists('$(QtMsBuild)\qt_defaults.props')" />
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <QtInstall>6.6.0_msvc2019_64</QtInstall>
-    <QtModules>core;gui;sql;widgets;</QtModules>
+    <QtModules>core;gui;sql;widgets;gui-private;</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <QtInstall>6.6.0_msvc2019_64</QtInstall>
@@ -73,7 +73,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Data\C++\visual studio 2022 projects\BTables\BTables\include;.;release;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Data\C++\visual studio 2022 projects\BTables\BTables\QXlsx\header;C:\Data\C++\visual studio 2022 projects\BTables\BTables\include;.;release;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -83,7 +83,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>release\</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;XLSX_NO_LIB;NDEBUG;QT_NO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName>
       </ProgramDataBaseFileName>
@@ -130,7 +130,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>debug\</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;XLSX_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -184,6 +184,40 @@
     <None Include="BTables.qtvscr" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="QXlsx\source\xlsxabstractooxmlfile.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxabstractsheet.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxcell.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxcellformula.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxcelllocation.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxcellrange.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxcellreference.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxchart.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxchartsheet.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxcolor.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxconditionalformatting.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxcontenttypes.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxdatavalidation.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxdatetype.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxdocpropsapp.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxdocpropscore.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxdocument.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxdrawing.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxdrawinganchor.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxformat.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxmediafile.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxnumformatparser.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxrelationships.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxrichstring.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxsharedstrings.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxsimpleooxmlfile.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxstyles.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxtheme.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxutility.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxworkbook.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxworksheet.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxzipreader.cpp" />
+    <ClCompile Include="QXlsx\source\xlsxzipwriter.cpp" />
+    <ClCompile Include="src\Excel.cpp" />
     <ClCompile Include="src\GuessResultsDialog.cpp" />
     <ClCompile Include="src\SetColumnsDialog.cpp" />
     <ClCompile Include="src\DataParser.cpp" />
@@ -196,6 +230,54 @@
     <ClCompile Include="src\UndoCommands.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="QXlsx\header\xlsxnumformatparser_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxrelationships_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxrichstring.h" />
+    <ClInclude Include="QXlsx\header\xlsxrichstring_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxsharedstrings_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxsimpleooxmlfile_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxstyles_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxtheme_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxutility_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxworkbook.h" />
+    <ClInclude Include="QXlsx\header\xlsxworkbook_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxworksheet.h" />
+    <ClInclude Include="QXlsx\header\xlsxworksheet_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxzipreader_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxzipwriter_p.h" />
+    <QtMoc Include="QXlsx\header\xlsxdocument.h" />
+    <ClInclude Include="QXlsx\header\xlsxabstractooxmlfile.h" />
+    <ClInclude Include="QXlsx\header\xlsxabstractooxmlfile_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxabstractsheet.h" />
+    <ClInclude Include="QXlsx\header\xlsxabstractsheet_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxcell.h" />
+    <ClInclude Include="QXlsx\header\xlsxcellformula.h" />
+    <ClInclude Include="QXlsx\header\xlsxcellformula_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxcelllocation.h" />
+    <ClInclude Include="QXlsx\header\xlsxcellrange.h" />
+    <ClInclude Include="QXlsx\header\xlsxcellreference.h" />
+    <ClInclude Include="QXlsx\header\xlsxcell_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxchart.h" />
+    <ClInclude Include="QXlsx\header\xlsxchartsheet.h" />
+    <ClInclude Include="QXlsx\header\xlsxchartsheet_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxchart_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxcolor_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxconditionalformatting.h" />
+    <ClInclude Include="QXlsx\header\xlsxconditionalformatting_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxcontenttypes_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxdatavalidation.h" />
+    <ClInclude Include="QXlsx\header\xlsxdatavalidation_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxdatetype.h" />
+    <ClInclude Include="QXlsx\header\xlsxdocpropsapp_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxdocpropscore_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxdocument_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxdrawinganchor_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxdrawing_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxformat.h" />
+    <ClInclude Include="QXlsx\header\xlsxformat_p.h" />
+    <ClInclude Include="QXlsx\header\xlsxglobal.h" />
+    <ClInclude Include="QXlsx\header\xlsxmediafile_p.h" />
+    <QtMoc Include="include\Excel.h" />
     <ClInclude Include="include\TypeDefs.h" />
     <ClInclude Include="include\UndoCommands.h" />
     <QtMoc Include="include\TableItemDelegate.h" />
@@ -214,6 +296,7 @@
     <QtUic Include="forms\guessResultsDialog.ui" />
     <QtUic Include="forms\mainWindowForm.ui" />
     <QtUic Include="forms\setColumnsDialog.ui" />
+    <QtUic Include="forms\settingsDialog.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc" />

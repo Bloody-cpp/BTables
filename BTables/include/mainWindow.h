@@ -8,6 +8,7 @@
 #include <Debug.h>
 #include <TableItemDelegate.h>
 #include <UndoCommands.h>
+#include <Excel.h>
 
 // In future:
 // 1. Add table with delete tables and posibility to recovery
@@ -47,6 +48,7 @@ namespace BTables
 		DebugWindow* m_debugWindow;
 		GuessState m_windowState = MainMenu;
 
+		ExcelIO* m_excel;
 		TableItemDelegate* m_delegate;
 		DataBase* m_db;
 		QPoint m_dragPosition;
@@ -97,5 +99,7 @@ namespace BTables
 		void on_deleteTableButton_clicked();
 		void on_removeFieldButton_clicked();
 		void on_viewButton_clicked();
+		void on_importButton_clicked();
+		void on_exportButton_clicked();
 	};
 }

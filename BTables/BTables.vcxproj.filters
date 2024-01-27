@@ -19,18 +19,16 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".qmake.stash" />
-    <None Include="BTables.pro" />
-    <None Include="BTables.qtvscr" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Main.cpp">
+    <ClCompile Include="src\Excel.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\MainWindow.cpp">
+    <ClCompile Include="src\GuessResultsDialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DataBase.cpp">
+    <ClCompile Include="src\SetColumnsDialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataParser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\CreateTableDialog.cpp">
@@ -39,13 +37,13 @@
     <ClCompile Include="src\Debug.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DataParser.cpp">
+    <ClCompile Include="src\DataBase.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SetColumnsDialog.cpp">
+    <ClCompile Include="src\MainWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GuessResultsDialog.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="src\TableItemDelegate.cpp">
@@ -54,52 +52,301 @@
     <ClCompile Include="src\UndoCommands.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxabstractooxmlfile.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxabstractsheet.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxcellformula.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxcell.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxcelllocation.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxcellrange.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxcellreference.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxchart.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxchartsheet.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxcolor.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxconditionalformatting.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxcontenttypes.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxdatetype.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxdatavalidation.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxdocpropscore.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxdocpropsapp.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxdocument.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxdrawinganchor.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxdrawing.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxformat.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxmediafile.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxnumformatparser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxrichstring.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxrelationships.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxsharedstrings.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxsimpleooxmlfile.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxstyles.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxtheme.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxworkbook.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxutility.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxworksheet.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxzipreader.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QXlsx\source\xlsxzipwriter.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Include.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DataParser.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\TypeDefs.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UndoCommands.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\DataParser.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Include.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxmediafile_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxglobal.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxformat_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxformat.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdrawinganchor_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdrawing_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdocument_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdocpropscore_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdocpropsapp_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdatetype.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdatavalidation_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxdatavalidation.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcontenttypes_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxconditionalformatting_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxconditionalformatting.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcolor_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxchartsheet_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxabstractooxmlfile.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxabstractooxmlfile_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxabstractsheet.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcell.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxabstractsheet_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcell_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcellformula.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcellformula_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcelllocation.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcellreference.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxcellrange.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxchart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxchart_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxchartsheet.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxnumformatparser_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxrelationships_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxrichstring.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxrichstring_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxsimpleooxmlfile_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxsharedstrings_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxstyles_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxtheme_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxutility_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxworkbook.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxworkbook_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxworksheet.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxworksheet_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxzipreader_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QXlsx\header\xlsxzipwriter_p.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="include\MainWindow.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\DataBase.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\CreateTableDialog.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\Debug.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\SetColumnsDialog.h">
-      <Filter>Generated Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\GuessResultsDialog.h">
+    <QtMoc Include="include\Excel.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
     <QtMoc Include="include\TableItemDelegate.h">
       <Filter>Generated Files</Filter>
     </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="forms\mainWindowForm.ui" />
-    <QtUic Include="forms\debugWindow.ui" />
-    <QtUic Include="forms\createTableButtonDialog.ui" />
-    <QtUic Include="forms\setColumnsDialog.ui" />
-    <QtUic Include="forms\guessResultsDialog.ui" />
+    <QtMoc Include="include\SetColumnsDialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\DataBase.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\Debug.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\CreateTableDialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\GuessResultsDialog.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\MainWindow.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QXlsx\header\xlsxdocument.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="forms\createTableButtonDialog.ui" />
+    <QtUic Include="forms\debugWindow.ui" />
+    <QtUic Include="forms\guessResultsDialog.ui" />
+    <QtUic Include="forms\mainWindowForm.ui" />
+    <QtUic Include="forms\setColumnsDialog.ui" />
+    <QtUic Include="forms\settingsDialog.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".qmake.stash" />
+    <None Include="BTables.pro" />
+    <None Include="BTables.qtvscr" />
   </ItemGroup>
 </Project>
